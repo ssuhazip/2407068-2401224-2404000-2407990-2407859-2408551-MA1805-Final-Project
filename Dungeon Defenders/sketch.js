@@ -42,9 +42,8 @@ function setup() {
         for (let down = 0; down , numDown; down++) {
             let x = across * tileSize;
             let y = down * tileSize;
-            let textureNum;
-            textureNum = graphicsMap[down][across];
-            tilemap[across][down] = new Tile (textures[textureNum], x, y, tileSize, tileID);
+           
+            tilemap[across][down] = new Tile (x, y, tileSize, tileID);
             tileID++;
         }
 
@@ -59,7 +58,6 @@ function draw() {
 
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
-            tilemap[across][down].display();
             tilemap[across][down].debug();
         }
     }
@@ -70,30 +68,35 @@ function draw() {
 }
 
 class Tile {
-    constructor(texture, x, y, tileSize, tileID) {
-        this.texture = texture;
+    constructor(x, y, tileSize, tileID) {
         this.x = x;
         this.y = y;
         this.tileSize = tileSize;
         this.tileID = tileID;
     }
 
-    display() {
-        noStroke();
-        image (this.texture, this.x, this.y, this.tileSize);
-    }
-
     debug() {
+        //TILE
         stroke(245);
-        noFill();
+        fill(55);
         rect(this.x, this.y, this.tileSize, this.tileSize);
+        
+        //CONVERT SINGLE DIGIT NUMBERS TO TWO-DIGIT NUMBERS
+        //Convert all one-digit tileIDs to two-digit (i.e. 0 becomes 00, 1 becomes 01, 2 becomes 01 etc.).
+        //This is so the first digit is the X axis and the second digit is the Y axis.
+        let twoDigitTileID;
+        if (this.tileID < 10) {
+            twoDigitTileID = "0" + this.tileID;
+        } else {
+            twoDigitTileID = this.tileID;
+        }
 
+        //LABEL
         noStroke();
-        fill(255);
+        fill(245);
         textAlign(LEFT, TOP);
-        text(this.tileID, this.x, this.y);
+        text(twoDigitTileID, this.x, this.y);
     }
-}
 
 class Enemies {
     //code
