@@ -97,6 +97,7 @@ class Tile {
         textAlign(LEFT, TOP);
         text(twoDigitTileID, this.x, this.y);
     }
+}
 
 class Enemies {
     //code
