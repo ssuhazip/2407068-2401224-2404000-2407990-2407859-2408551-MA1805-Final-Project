@@ -4,6 +4,20 @@ let numDown = 10;
 let numAcross = 10;
 let tileSize = 50;
 
+let textures = [];
+let graphicsMap = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+    
+]
 
 //ITEM VARIABLES GO HERE
 
@@ -19,23 +33,23 @@ function preload() {
 }
 
 function setup() {
-    createCanvas (500, 500);
+    createCanvas(500, 500);
 
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
         tilemap[across] = [];
-        for (let down = 0; down , numDown; down++) {
+        for (let down = 0; down < numDown; down++) {
             let x = across * tileSize;
             let y = down * tileSize;
-           
-            tilemap[across][down] = new Tile (x, y, tileSize, tileID);
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+            tilemap[across][down] = new Tile(textures[textureNum], x, y, tileSize, tileID);
+
             tileID++;
         }
-
+        console.log(graphicsMap[1][8])
     }
 
-
-    //console.log IN CASE YOU NEED TO SEE WHAT THE CODE IS DOING/ WHAT IT WILL SHOW
 }
 
 function draw() {
@@ -43,6 +57,7 @@ function draw() {
 
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
+            tilemap[across][down].display();
             tilemap[across][down].debug();
         }
     }
@@ -53,37 +68,34 @@ function draw() {
 }
 
 class Tile {
-    constructor(x, y, tileSize, tileID) {
+    constructor(texture, x, y, tileSize, tileID) {
+        this.texture = texture;
         this.x = x;
         this.y = y;
         this.tileSize = tileSize;
         this.tileID = tileID;
     }
 
+    display() {
+        noStroke();
+        image(this.texture, this.x, this.y, this.tileSize);
+    }
+
     debug() {
         //TILE
         stroke(245);
-        fill(55);
+        noFill();
         rect(this.x, this.y, this.tileSize, this.tileSize);
-        
-        //CONVERT SINGLE DIGIT NUMBERS TO TWO-DIGIT NUMBERS
-        //Convert all one-digit tileIDs to two-digit (i.e. 0 becomes 00, 1 becomes 01, 2 becomes 01 etc.).
-        //This is so the first digit is the X axis and the second digit is the Y axis.
-        let twoDigitTileID;
-        if (this.tileID < 10) {
-            twoDigitTileID = "0" + this.tileID;
-        } else {
-            twoDigitTileID = this.tileID;
-        }
 
         //LABEL
         noStroke();
-        fill(245);
+        fill(255);
         textAlign(LEFT, TOP);
-        text(twoDigitTileID, this.x, this.y);
+        
+        text(this.tileID, this.x, this.y);
     }
+ 
 }
-
 class Enemies {
     //code
 }
