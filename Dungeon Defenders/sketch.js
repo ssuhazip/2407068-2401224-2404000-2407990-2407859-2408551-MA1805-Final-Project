@@ -4,21 +4,6 @@ let numDown = 10;
 let numAcross = 10;
 let tileSize = 50;
 
-let textures = [];
-let graphicsMap = [
-    //X coordinate values
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],   //Y coordinate values
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-]
-
 
 //ITEM VARIABLES GO HERE
 
@@ -34,7 +19,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas (windowWidth, windowHeight);
+    createCanvas (500, 500);
 
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
