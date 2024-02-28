@@ -34,14 +34,34 @@ function preload() {
 }
 
 function setup() {
-    //createCanvas (500, 500)
+    createCanvas(500, 500);
 
+    let tileID = 0;
+    for (let across = 0; across < numAcross; across++) {
+        tilemap[across] = [];
+        for (let down = 0; down < numDown; down++) {
+            let x = across * tileSize;
+            let y = down * tileSize;
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+            tilemap[across][down] = new Tile(textures[textureNum], x, y, tileSize, tileID);
 
-    //console.log IN CASE YOU NEED TO SEE WHAT THE CODE IS DOING/ WHAT IT WILL SHOW
+            tileID++;
+        }
+        console.log(graphicsMap[1][8])
+    }
+
 }
 
 function draw() {
-    //background 
+    background(0);
+
+    for (let across = 0; across < numAcross; across++) {
+        for (let down = 0; down < numDown; down++) {
+            tilemap[across][down].display();
+            tilemap[across][down].debug();
+        }
+    }
 
     //for loop tilemap texture graphics
 
@@ -49,9 +69,34 @@ function draw() {
 }
 
 class Tile {
-    //code
-}
+    constructor(texture, x, y, tileSize, tileID) {
+        this.texture = texture;
+        this.x = x;
+        this.y = y;
+        this.tileSize = tileSize;
+        this.tileID = tileID;
+    }
 
+    display() {
+        noStroke();
+        image(this.texture, this.x, this.y, this.tileSize);
+    }
+
+    debug() {
+        //TILE
+        stroke(245);
+        noFill();
+        rect(this.x, this.y, this.tileSize, this.tileSize);
+
+        //LABEL
+        noStroke();
+        fill(255);
+        textAlign(LEFT, TOP);
+        
+        text(this.tileID, this.x, this.y);
+    }
+ 
+}
 class Enemies {
     //code
 }
