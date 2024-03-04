@@ -1,4 +1,23 @@
 //TILEMAP VARIABLES HERE
+let tilemap = [];
+let numDown = 10;
+let numAcross = 10;
+let tileSize = 50;
+
+let textures = [];
+let graphicsMap = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+    
+]
 
 
 //ITEM VARIABLES GO HERE
@@ -23,6 +42,7 @@ function preload() {
 }
 
 function setup() {
+HEAD
     //createCanvas (500, 500)
     createCanvas(600, 600);
     character = new Character(width / 5, height / 5, 60); // Character's initial position and size
@@ -32,6 +52,37 @@ function setup() {
 function draw() {
     //background 
     background(220);
+
+    createCanvas(500, 500);
+
+    let tileID = 0;
+    for (let across = 0; across < numAcross; across++) {
+        tilemap[across] = [];
+        for (let down = 0; down < numDown; down++) {
+            let x = across * tileSize;
+            let y = down * tileSize;
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+            tilemap[across][down] = new Tile(textures[textureNum], x, y, tileSize, tileID);
+
+            tileID++;
+        }
+        console.log(graphicsMap[1][8])
+    }
+
+}
+
+function draw() {
+    background(0);
+
+    for (let across = 0; across < numAcross; across++) {
+        for (let down = 0; down < numDown; down++) {
+            tilemap[across][down].display();
+            tilemap[across][down].debug();
+        }
+    }
+
+b2db79e2001d4e830ce24386e51155a4e9c33c62
     //for loop tilemap texture graphics
     //for loop enemies or items]
     if (leftKeyPressed && character.x > 0) {
@@ -50,9 +101,34 @@ character.display();
 }
 
 class Tile {
-    //code
-}
+    constructor(texture, x, y, tileSize, tileID) {
+        this.texture = texture;
+        this.x = x;
+        this.y = y;
+        this.tileSize = tileSize;
+        this.tileID = tileID;
+    }
 
+    display() {
+        noStroke();
+        image(this.texture, this.x, this.y, this.tileSize);
+    }
+
+    debug() {
+        //TILE
+        stroke(245);
+        noFill();
+        rect(this.x, this.y, this.tileSize, this.tileSize);
+
+        //LABEL
+        noStroke();
+        fill(255);
+        textAlign(LEFT, TOP);
+        
+        text(this.tileID, this.x, this.y);
+    }
+ 
+}
 class Enemies {
     //code
 }
