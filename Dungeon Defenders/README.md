@@ -20,13 +20,13 @@ Anna Kuangnarin- 101061469
 Each object is essentially a level in the game, once the player manages to obtain an object required to overthrow the ruler, they move onto another stage where they repeat the whole process, except they manage to acquire another piece of the three objects; until they get to the final stage, where they face the King (who is the ultimate boss of the game), and secure the King crown.
 
 ## ROLES & INDIVIDUAL CONTRIBUTIONS
-**Han: Main Coder/ Maps Coder**
+**Han: Main Coder/ Maps Coder-**
 
 
-**Imogen: Designer for enemy sprites/ Coder for enemy sprites**
+**Imogen: Designer for enemy sprites/ Coder for enemy sprites-**
 
 
-**Allyssa: Story writer/Coder for player, scroll screen and game over screen**
+**Allyssa: Story writer/Coder for player, scroll screen and game over screen-**
 I have taken on the role of creating the narrative of the game where I sort of proposed the basis of the backstory of the entire game, which is essentially the whole idea of a rebellion attempting the overthrow the king. But in order to do this, they must obtain these three objects which are each contained in three different locations within the king's fortress. 
 
 In order to introduce this narrative to the players of the game, I have created a scroll which will be presented right before the player enters the first level of the game, and it contains a message from the leader of this rebellion group, explaining to the player the main objective of the game and what they'll be facing in order to achieve the goal of overthrowing the king. 
@@ -35,13 +35,13 @@ I have also contributed to coding the moving character on the tilemap, by import
 
 Overall, I have enjoyed the process of creating the narrative a lot, as well as coding both the scoll message page and the moving character.
 
-**Suha: Designer for items/ Coder for Items**
+**Suha: Designer for items/ Coder for Items, some dialogue-**
 
 
-**Anna: Designer for assets/ Coder for Story, Map Assets, Dialogue**
+**Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
 
 
-**Amelia: Designer for character, tile maps/ Coder for Intro screen, story**
+**Amelia: Designer for character, tile maps/ Coder for Intro screen, story-**
 
 
 ## THEMES
