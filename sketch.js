@@ -32,7 +32,7 @@ let tileRules = [
 
 let characterImg;
 let character;
-let speed = 8;
+let playerSpeed = 8;
 let leftKeyPressed = false;
 let rightKeyPressed = false;
 let upKeyPressed = false;
