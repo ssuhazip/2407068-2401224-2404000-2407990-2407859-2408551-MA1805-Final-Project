@@ -39,46 +39,37 @@ function draw() {
 }   
 
 class Goblin {
-    constructor(sprite, x, y, size) {
+    constructor(sprite, x, y, size, speed) {
         this.sprite = sprite;
         this.x = x;
         this.y = y;
-        this.targetX = Math.floor(Math.random()*869)+10;
-		this.targetY = Math.floor(Math.random()*200)+300;
+        this.targetX = 8;
+		this.targetY = 8;
         this.size = 100, 100;
+        this.speed = 1
     }
 
     display() {
         image(this.sprite, this.x, this.y, this.size);
-    }
+        this.update();
+    
 }
 
 
-  function Update(){
-    if (this.x > this.targetX) //if the goblin is to the right of it's target
-			{
-				this.x -= 1; //move left
-			}
-			else if (this.x < this.targetX) //if the goblin is to the left of it's target
-			{
-				this.x += 1; //move right
-			}
-			else 
-			{
-				//the goblin is aligned to it's target on the x axis
-			}
+       update() {
+        // Handle goblin movement on the x-axis
+        if (this.x < this.targetX) {
+            this.x += this.speed; // Move right
+        } else if (this.x > this.targetX) {
+            this.x -= this.speed; // Move left
+        }
+    
 
-			//Handle goblin movement on the y axis
-			if (this.y < this.targetY) //if the goblin is above it's target
-			{
-				this.y += 1; //move down
-			}
-			else if (this.y > this.targetY) //if the goblin is below it's target
-			{
-				this.y -= 1; //move up
-			}
-			else 
-			{
-				//the goblin is aligned to it's target on the y axis
-			}
-  } 
+        // Handle goblin movement on the y-axis
+        if (this.y < this.targetY) {
+            this.y += this.speed; // Move down
+        } else if (this.y > this.targetY) {
+            this.y -= this.speed; // Move up
+        }
+    }
+}
