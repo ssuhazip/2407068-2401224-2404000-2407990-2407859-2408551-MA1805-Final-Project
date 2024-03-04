@@ -99,14 +99,3 @@ class Tile {
     }
  
 }
-class Enemies {
-    //code
-}
-
-class Item {
-    //code
-}
-
-class Player {
-    //code
-}
