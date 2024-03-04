@@ -1,42 +1,31 @@
-//TILEMAP VARIABLES HERE
 let tilemap = [];
 let numDown = 10;
 let numAcross = 10;
 let tileSize = 50;
 
+
 let textures = [];
 let graphicsMap = [
-    [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, ],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
     
 ]
 
-//ITEM VARIABLES GO HERE
-
-
-//ENEMIES VARIABLES GO HERE
-
-
-//PLAYER VARIABLES GO HERE
-
 function preload() {
-    //IMAGES FOR MAP AND CHARACTERS GO HERE
-    textures[0] = loadImage('path.png');
-    textures[1] = loadImage('wall.png');
-    //ALL IMAGES PLEASE PUT IN THE ASSETS FOLDER
+    textures[0] = loadImage("path.png");
+    textures[1] = loadImage("wall.png");
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(500, 500);
 
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
@@ -46,6 +35,7 @@ function setup() {
             let y = down * tileSize;
             let textureNum;
            textureNum = graphicsMap[down][across];
+           console.log("My tileID is", tileID, "and my texture number is", textureNum);
             tilemap[across][down] = new Tile(textures[textureNum], x, y, tileSize, tileID);
 
             tileID++;
@@ -64,10 +54,7 @@ function draw() {
             tilemap[across][down].debug();
         }
     }
-
-    //for loop tilemap texture graphics
-
-    //for loop enemies or items
+    
 }
 
 class Tile {
@@ -81,7 +68,7 @@ class Tile {
 
     display() {
         noStroke();
-        image(this.texture, this.x, this.y, this.tileSize, this.tileSize);
+        image(this.texture, this.x, this.y, this.tileSize);
     }
 
     debug() {
