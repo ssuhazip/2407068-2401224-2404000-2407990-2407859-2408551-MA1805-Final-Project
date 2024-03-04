@@ -54,4 +54,4 @@ Theme of Dungeons, Rebellion, Monarchy, etc. We're essentially aiming for a dark
 
 ## AESTHETIC
 Main aestheitc/atmosphere we are aiming for: 
-![alt text](6f6aba4c807b10ab27570b107770467f.jpg)![alt text](7645480e38e89d7ac0f628dd58a90df2.jpg)![alt text](c4b7c016e4fd3f1addbb42f500652b15.jpg)![alt text](663095e4edd081ec75a959e4155a0d35.jpg)
+![alt text](6f6aba4c807b10ab27570b107770467f.jpg)![alt text](7645480e38e89d7ac0f628dd58a90df2.jpg)![alt text](c4b7c016e4fd3f1addbb42f500652b15.jpg)![alt text](663095e4edd081ec75a959e4155a0d35.jpg) 
