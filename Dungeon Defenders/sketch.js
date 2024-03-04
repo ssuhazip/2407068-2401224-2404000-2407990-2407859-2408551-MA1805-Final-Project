@@ -37,6 +37,8 @@ let downKeyPressed = false;
 
 function preload() {
     //IMAGES FOR MAP AND CHARACTERS GO HERE
+    textures[0] = loadImage("path.png");
+    textures[1] = loadImage("wall.png");
     //ALL IMAGES PLEASE PUT IN THE ASSETS FOLDER
     characterImg = loadImage('player.png');
 }
