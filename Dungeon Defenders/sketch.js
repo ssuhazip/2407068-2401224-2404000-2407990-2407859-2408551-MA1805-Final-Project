@@ -30,8 +30,8 @@ let graphicsMap = [
 
 function preload() {
     //IMAGES FOR MAP AND CHARACTERS GO HERE
-    textures[0] = loadImage("path.png");
-    textures[1] = loadImage("wall.png");
+    textures[0] = loadImage('path.png');
+    textures[1] = loadImage('wall.png');
     //ALL IMAGES PLEASE PUT IN THE ASSETS FOLDER
 }
 
