@@ -8,25 +8,45 @@
 
 
 //PLAYER VARIABLES GO HERE
+let characterImg;
+let character;
+let speed = 8; 
+let leftKeyPressed = false;
+let rightKeyPressed = false;
+let upKeyPressed = false;
+let downKeyPressed = false;
 
 function preload() {
     //IMAGES FOR MAP AND CHARACTERS GO HERE
     //ALL IMAGES PLEASE PUT IN THE ASSETS FOLDER
+    characterImg = loadImage('player.png');
 }
 
 function setup() {
     //createCanvas (500, 500)
-
-
+    createCanvas(600, 600);
+    character = new Character(width / 5, height / 5, 60); // Character's initial position and size
     //console.log IN CASE YOU NEED TO SEE WHAT THE CODE IS DOING/ WHAT IT WILL SHOW
 }
 
 function draw() {
     //background 
-
+    background(220);
     //for loop tilemap texture graphics
-
-    //for loop enemies or items
+    //for loop enemies or items]
+    if (leftKeyPressed && character.x > 0) {
+        character.x -= speed;
+      }
+      if (rightKeyPressed && character.x < width - character.size) {
+        character.x += speed;
+      }
+      if (upKeyPressed && character.y > 0) {
+        character.y -= speed;
+      }
+      if (downKeyPressed && character.y < height - character.size) {
+        character.y += speed;
+}
+character.display();
 }
 
 class Tile {
@@ -41,6 +61,38 @@ class Item {
     //code
 }
 
-class Player {
-    //code
-}
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+      leftKeyPressed = true;
+    } else if (keyCode === RIGHT_ARROW) {
+      rightKeyPressed = true;
+    } else if (keyCode === UP_ARROW) {
+      upKeyPressed = true;
+    } else if (keyCode === DOWN_ARROW) {
+      downKeyPressed = true;
+    }
+  }
+  
+  function keyReleased() {
+    if (keyCode === LEFT_ARROW) {
+      leftKeyPressed = false;
+    } else if (keyCode === RIGHT_ARROW) {
+      rightKeyPressed = false;
+    } else if (keyCode === UP_ARROW) {
+      upKeyPressed = false;
+    } else if (keyCode === DOWN_ARROW) {
+      downKeyPressed = false;
+    }
+  }
+  
+  class Character {
+    constructor(x, y, size) {
+      this.x = x;
+      this.y = y;
+      this.size = size;
+    }
+  
+    display() {
+      image(characterImg, this.x, this.y, this.size, this.size);
+    }
+  }
