@@ -48,7 +48,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(500, 500);
 
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
