@@ -11,6 +11,7 @@ let dialogueX = 50;
 let dialogueY = 380;
 let spacer = 30;
 let knightDialogue = ["Who goes there?", "An intruder!", "Knights, seize him!"];
+var testing = 0;
 let kingDialogue = ["So it is you...", "BEGONE!!!"];
 var dialogueNum = 0;
 
