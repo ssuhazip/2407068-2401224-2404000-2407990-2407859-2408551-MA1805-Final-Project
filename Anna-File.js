@@ -11,6 +11,8 @@ let dialogueX = 50;
 let dialogueY = 380;
 let spacer = 30;
 let knightDialogue = ["Who goes there?", "An intruder!", "Knights, seize him!"];
+var testing = 0;
+let kingDialogue = ["So it is you...", "BEGONE!!!"];
 var dialogueNum = 0;
 
 function preload() {
@@ -21,7 +23,7 @@ function preload() {
 
 function setup() {
     createCanvas(500, 500);
-    scene = "dungeon";
+    scene = "throneRoom";
 }
 
 function draw() {
@@ -42,7 +44,12 @@ function draw() {
 
     else if(scene == "throneRoom"){
         background(0, 0, 255);
-        
+
+        if (dialogueNum < kingDialogue.length) {
+            dialogue(kingDialogue[dialogueNum]);
+        }else if (dialogueNum == kingDialogue.length) {
+            inDialogue = false;
+        }
     }
 }
 
