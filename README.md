@@ -34,12 +34,12 @@ I have so far created sprites for the goblin enemies, and coded their movement s
 
 Overall I find the coding a satisfying process, and have enjoyed creating the sprite designs.
 
-**Allyssa: Story writer/Coder for player, scroll screen-**
+**Allyssa: Story writer/Coder for player, scroll message screen-**
 I have taken on the role of creating the narrative of the game where I sort of proposed the basis of the backstory of the entire game, which is essentially the whole idea of a rebellion attempting the overthrow the king. But in order to do this, they must obtain these three objects which are each contained in three different locations within the king's fortress. 
 
 In order to introduce this narrative to the players of the game, I have created a scroll which will be presented right before the player enters the first level of the game, and it contains a message from the leader of this rebellion group, explaining to the player the main objective of the game and what they'll be facing in order to achieve the goal of overthrowing the king. 
 
-I have also contributed to coding the moving character on the tilemap, by importing the character designed by Amelia into VS code and implementing some of the code learnt from Week 17 to achieve this. 
+I have also contributed to coding the moving character on the tilemap, by importing the character designed by Amelia into VS code and implementing some of the code learnt from Week 17 to achieve this, and have coded it so that when the player left clicks, the character is holding its dagger, which can later be used to defeat the enemies, when we develop the game further.
 
 Overall, I have enjoyed the process of creating the narrative a lot, as well as coding both the scoll message page and the moving character.
 
