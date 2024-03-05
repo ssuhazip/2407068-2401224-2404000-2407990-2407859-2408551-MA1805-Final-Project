@@ -9,7 +9,7 @@ let startScreenImage; // Variable to hold the start screen image
 let tilemap = [];
 let numDown = 10;
 let numAcross = 10;
-let tileSize = 50;
+let tileSize = 60;
 
 let textures = [];
 let graphicsMap = [
