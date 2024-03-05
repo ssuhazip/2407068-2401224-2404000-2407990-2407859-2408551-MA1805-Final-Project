@@ -47,7 +47,13 @@ Overall, I have enjoyed the process of creating the narrative a lot, as well as 
 
 
 **Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
+My role for this project has been working on the environmental assets to be placed on the tiles, such as skeleton barriers in the dungeon, banners on the walls, and treasure chests. 
 
+I have also taken on the role of coding the dialogue function, which has yet to be implemented in the prototype as the dialogue will need to be triggered based on the player's location. The dialogue function takes in a pre-defined list of strings to be said and shows each character within the dialogue box sequentially, so as to mimic speech. 
+
+I have also assisted in the coding for the menu screen, in which I have combined the "Play" button into the scrolling text screen.
+
+Overall, I have enjoyed implementing features into the game that help bring it to life and find seeing the impact very satisfying.
 
 **Amelia: Designer for character, tile maps/ Coder for Intro screen, story-**
 
