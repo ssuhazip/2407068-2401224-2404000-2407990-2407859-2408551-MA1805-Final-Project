@@ -12,7 +12,7 @@ Imogen Kingston- 2407990,
 
 Amelia Harrison- 101052216,
 
-Anna Kuangnarin- 101061469
+Anna Kuangnarin- 2408551
 
 ## OVERVIEW OF OUR GAME: 
  In our game “Reign of Rebels” the player takes on the role of a rebel aiming to overthrow the ruler and place their leader on the throne. To achieve this, they must embark on a quest to steal three sacred objects – a Sceptre, a Robe, and a Crown – each held in a different location, which would be the Dungeons, Main Hall and the Throne Room, each guarded by a series of obstacles and trials. 
