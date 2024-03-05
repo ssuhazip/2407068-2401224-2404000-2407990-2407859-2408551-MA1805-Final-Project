@@ -2,6 +2,7 @@ var scene;
 
 
 let menuBg;
+let Title;
 
 // GENERIC BUTTON VARIABLES
 let buttonY = 350;
@@ -31,7 +32,8 @@ let inExitButton = false;
 
 
 function preload() {
-    menuBg = loadImage("assets/menu.jpg");
+    menuBg = loadImage("assets/castle.png");
+    Title = loadImage("assets/Title.png");
     playButton = loadImage("assets/squareButton.png");
     buttonHighlight = loadImage("assets/buttonHighlight.png");
     playText = loadImage("assets/playButtonText.png");
@@ -49,8 +51,8 @@ function setup() {
 
 function draw() {
     if (scene == "menu"){
-        image(menuBg, 0, 0); //background
-
+        image(menuBg, -100, 0,600,500); //background
+        image(Title, 9, 0, 500, 200);
         // PLAY BUTTON
         
 
@@ -77,9 +79,18 @@ function draw() {
         image(playText, playButtonX + 10, buttonY + 30, 90, 50);
 
         // HELP BUTTON
-
-
+        helpButtonDistance = dist(helpButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+        if (helpButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
+            inHelpButton = true;
+            image(buttonHighlight, helpButtonX, buttonY, 180, 135);
+        }
         
+        exitButtonDistance = dist(exitButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+        if (exitButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
+            inExitButton = true;
+            image(buttonHighlight, exitButtonX, buttonY, 180, 135);
+
+        }
 
         image(helpText, helpButtonX + 10, buttonY + 30, 90, 50);
         // EXIT BUTTON
@@ -98,4 +109,3 @@ function mouseClicked() { // when the mouse is clicked in the button
         // whatever the exit button is going to do
     }
 }
-
