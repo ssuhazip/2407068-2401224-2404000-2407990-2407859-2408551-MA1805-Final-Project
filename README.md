@@ -58,6 +58,8 @@ Overall, I have enjoyed implementing features into the game that help bring it t
 **Amelia: Designer for character, tile maps/ Coder for Intro screen, story-**
 I have been working on the tile maps, main character, menu and introduction screen. These are all done from scratch but have heavy influence from games such as ‘The Escapist’ and ‘Stardew Valley’. I spent most my time looking at these games and analysing the details which are portrayed through different colour palletes such as shadows, pillars and cracks in flooring; aswell as lighter shades for sheen on clean flooring. I had alot of fun creating these tiles maps as it included the combination of creative freedom aswell as arcitectual things when it came to measurements and precise details. I worked on coding the main menu buttons that will be implimented aswell as a game over screen!
 
+Overall so far, I have loved the balance between intuitive code learning with my creative abilities and I have been able to have fun whilst learning code ;I am slowly becoming comfortble with.
+
 ## THEMES
 Theme of Dungeons, Rebellion, Monarchy, etc. We're essentially aiming for a dark, scary atmosphere/mood within the game. 
 
