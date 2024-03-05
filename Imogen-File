@@ -2,14 +2,19 @@
 
 let goblins = [];
 let goblinSize = 30;
-let numGoblins = 7;
+let numGoblins = 2;
+let lastSpriteChangeTime = 0;
+const spriteChangeInterval = 190;
 
 //sprite variables
 let goblinSprite;
+let goblinSprite1;
+let goblinSprite2;
 
 
 function preload() {
-    goblinSprite = loadImage("goblin1.png");
+    goblinSprite1 = loadImage("goblin1.png");
+    goblinSprite2 = loadImage("goblin3.png");
     
 }
 
@@ -20,7 +25,7 @@ function setup() {
 
     
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
-        goblins[enemyCount] = new Goblin(goblinSprite,
+        goblins[enemyCount] = new Goblin(goblinSprite1,
                                         random(0, width),
                                         random(0, height),
                                         goblinSize)
@@ -30,7 +35,12 @@ function setup() {
 function draw() {
     background(245);
 
-    
+    if (millis() - lastSpriteChangeTime > spriteChangeInterval) {
+        for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+            goblins[enemyCount].switchSprite();
+        }
+        lastSpriteChangeTime = millis();
+    }
 
    
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
@@ -41,16 +51,26 @@ function draw() {
 class Goblin {
     constructor(sprite, x, y, size, speed) {
         this.sprite = sprite;
+        this.sprites = [goblinSprite1, goblinSprite2];
+        this.currentSpriteIndex = 0;
         this.x = x;
         this.y = y;
         this.targetX = 8;
 		this.targetY = 8;
         this.size = 100, 100;
-        this.speed = 1
+        this.speed = 0.8
+        this.direction = 'right';
     }
 
     display() {
-        image(this.sprite, this.x, this.y, this.size);
+        if (this.direction === 'left') {
+            // Flip horizontally
+            scale(-1, 1);
+            image(this.sprite, -this.x - this.size, this.y, this.size, this.size);
+            scale(-1, 1); // Reset scale
+        } else {
+            image(this.sprite, this.x, this.y, this.size, this.size);
+        }
         this.update();
     
 }
@@ -60,8 +80,10 @@ class Goblin {
         // Handle goblin movement on the x-axis
         if (this.x < this.targetX) {
             this.x += this.speed; // Move right
+            this.direction = 'right'; // Update direction
         } else if (this.x > this.targetX) {
             this.x -= this.speed; // Move left
+            this.direction = 'left'; // Update direction
         }
     
 
@@ -71,5 +93,10 @@ class Goblin {
         } else if (this.y > this.targetY) {
             this.y -= this.speed; // Move up
         }
+    }
+
+    switchSprite() {
+        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
+        this.sprite = this.sprites[this.currentSpriteIndex];
     }
 }
