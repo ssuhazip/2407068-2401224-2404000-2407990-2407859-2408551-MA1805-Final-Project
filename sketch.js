@@ -12,6 +12,7 @@ let numDown = 10;
 let numAcross = 10;
 let tileSize = 60;
 
+
 let textures = [];
 let graphicsMap = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
