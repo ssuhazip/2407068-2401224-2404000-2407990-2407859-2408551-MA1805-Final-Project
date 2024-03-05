@@ -6,7 +6,7 @@ Allyssa Rose Dacanay- 2407068,
 
 Saleha (Suha) Uddin- 2401224, 
 
-Han Lacson- 101050402, 
+Han Lacson- 2404000, 
 
 Imogen Kingston- 101047838, 
 
