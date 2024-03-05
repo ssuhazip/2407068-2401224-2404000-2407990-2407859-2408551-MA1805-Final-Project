@@ -51,6 +51,10 @@ let textContent = "Dear Rebels,\n\nAs we stand on the edge of history, poised to
 let customFont;
 let backgroundImage;
 
+let daggerImage; // Variable to hold the dagger image
+
+let daggerVisible = false; // Boolean variable to track if the dagger is visible or not
+
 function preload() {
     //textures for the graphicsMap
     textures[0] = loadImage("path.png");
@@ -67,6 +71,9 @@ function preload() {
 
     // Background image for the text content
     backgroundImage = loadImage('Scroll Screen Background.png');
+
+    // Load dagger image
+    daggerImage = loadImage('dagger.png');
 }
 
 function setup() {
@@ -113,6 +120,14 @@ function keyPressed() {
         }
     }
     player.setDirection(); //allows the player to move across the tiles
+}
+
+function mouseClicked() {
+    // Check if the mouse is clicked on the canvas
+    if (gameState === "play" && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+        // Toggle the visibility of the dagger
+        daggerVisible = !daggerVisible;
+    }
 }
 
 function drawStartPage() {
@@ -162,7 +177,7 @@ function drawTextContent() {
 
 function drawGame() {
     background(0);
-//draws the first level/stage of the game
+    //draws the first level/stage of the game
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
             tilemap[across][down].display();
@@ -171,6 +186,12 @@ function drawGame() {
     }
     player.display();
     player.move();
+
+    // Draw dagger if it's visible
+    if (daggerVisible) {
+        // Draw the dagger at the player's position
+        image(daggerImage, player.xPos, player.yPos, player.size, player.size);
+    }
 }
 
 class Tile {
