@@ -110,6 +110,7 @@ function keyPressed() {
             player.setDirection();
         }
     }
+    player.setDirection();
 }
 
 function drawStartPage() {
