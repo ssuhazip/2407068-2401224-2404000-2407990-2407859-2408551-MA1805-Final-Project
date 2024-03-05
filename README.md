@@ -47,10 +47,16 @@ Overall, I have enjoyed the process of creating the narrative a lot, as well as 
 
 
 **Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
+My role for this project has been working on the environmental assets to be placed on the tiles, such as skeleton barriers in the dungeon, banners on the walls, and treasure chests. 
 
+I have also taken on the role of coding the dialogue function, which has yet to be implemented in the prototype as the dialogue will need to be triggered based on the player's location. The dialogue function takes in a pre-defined list of strings to be said and shows each character within the dialogue box sequentially, so as to mimic speech. 
+
+I have also assisted in the coding for the menu screen, in which I have combined the "Play" button into the scrolling text screen.
+
+Overall, I have enjoyed implementing features into the game that help bring it to life and find seeing the impact very satisfying.
 
 **Amelia: Designer for character, tile maps/ Coder for Intro screen, story-**
-
+I have been working on the tile maps, main character, menu and introduction screen. These are all done from scratch but have heavy influence from games such as ‘The Escapist’ and ‘Stardew Valley’. I spent most my time looking at these games and analysing the details which are portrayed through different colour palletes such as shadows, pillars and cracks in flooring; aswell as lighter shades for sheen on clean flooring. I had alot of fun creating these tiles maps as it included the combination of creative freedom aswell as arcitectual things when it came to measurements and precise details. I worked on coding the main menu buttons that will be implimented aswell as a game over screen!
 
 ## THEMES
 Theme of Dungeons, Rebellion, Monarchy, etc. We're essentially aiming for a dark, scary atmosphere/mood within the game. 
