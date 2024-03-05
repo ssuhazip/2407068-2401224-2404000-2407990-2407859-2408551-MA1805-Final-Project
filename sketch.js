@@ -65,7 +65,7 @@ function preload() {
     customFont = loadFont('MinecraftRegular-Bmg3.otf');
 
     // Background image for the text content
-    backgroundImage = loadImage('intro screen.png');
+    backgroundImage = loadImage('Scroll Screen Background.png');
 }
 
 function setup() {
