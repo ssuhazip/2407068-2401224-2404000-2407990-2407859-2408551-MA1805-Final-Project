@@ -8,7 +8,7 @@ Saleha (Suha) Uddin- 2401224,
 
 Han Lacson- 101050402, 
 
-Imogen Kingston-, 
+Imogen Kingston- 101047838, 
 
 Amelia Harrison- 101052216,
 
@@ -27,8 +27,11 @@ I have contributed in coding with the prototype of the game's tilemap and have u
 
 Overall, I have so far enjoyed experimenting with the code and I find it satisfying when I can solve issues and problems within the code. 
 
-**Imogen: Designer for enemy sprites/ Coder for enemy sprites-**
+**Imogen: Designer for enemy sprites/ Coder for enemy sprites-** For the project I have taken the role of both designing and coding all the enemies, which will consist of goblins, knights and a king as a final boss.
 
+I have so far created sprites for the goblin enemies, and coded their movement so they target the player. Additionally I have created an animation cycle for the sprites so they face the direction they are walking and move their legs.
+
+Overall I find the coding a satisfying process, and have enjoyed creating the sprite designs.
 
 **Allyssa: Story writer/Coder for player, scroll screen-**
 I have taken on the role of creating the narrative of the game where I sort of proposed the basis of the backstory of the entire game, which is essentially the whole idea of a rebellion attempting the overthrow the king. But in order to do this, they must obtain these three objects which are each contained in three different locations within the king's fortress. 
