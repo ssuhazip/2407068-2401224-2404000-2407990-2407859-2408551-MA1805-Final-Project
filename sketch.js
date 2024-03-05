@@ -68,7 +68,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(700, 700);
+    createCanvas(600, 600);
     textSize(16);
 
     // Set the custom font
@@ -116,7 +116,7 @@ function drawStartPage() {
     image(startScreenImage, 0, 0, width, height);
 
     // Set text properties
-    textSize(32);
+    textSize(32); // Set text size to 32 for the intro screen
     textAlign(CENTER);
     fill(255);
     textFont(customFont);
@@ -132,9 +132,13 @@ function drawTextContent() {
     // Draw the background image for the text content
     image(backgroundImage, 0, 0, width, height);
 
+    // Set text properties
+    textSize(16); // Set text size to 16 for the text content
+    fill(255);
+    textFont(customFont);
+
     // Draw the text at the current scroll position
     let yPos = scrollPos;
-    fill(255);
     text(textContent, 50, yPos);
 
     // Update scroll position
@@ -145,6 +149,7 @@ function drawTextContent() {
         gameState = "play"; // Transition to play state after text finishes scrolling
     }
 }
+
 
 function drawGame() {
     background(0);
