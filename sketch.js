@@ -2,7 +2,7 @@
 let tilemap = [];
 let numDown = 10;
 let numAcross = 10;
-let tileSize = 50;
+let tileSize = 80;
 
 let textures = [];
 let graphicsMap = [
@@ -48,7 +48,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(800, 800);
 
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
