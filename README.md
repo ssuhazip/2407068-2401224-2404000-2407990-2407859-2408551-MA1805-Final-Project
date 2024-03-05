@@ -44,7 +44,13 @@ I have also contributed to coding the moving character on the tilemap, by import
 Overall, I have enjoyed the process of creating the narrative a lot, as well as coding both the scoll message page and the moving character.
 
 **Suha: Designer for items/ Coder for Items, some dialogue-**
+For this project I have taken the role as the designer and coder for items.  Firstly, I have created visually appealing items using pixel art style, by making use of the ibis Paint X software. These items include a crown, a cape and sceptre. 
 
+In terms of coding, I have coded the movement (e.g., floating) and position of the items within the game as well as a click function which will trigger a text box (with time limit appearance wise).
+
+Additionally, I have taken on the responsibility of creating item dialogues to bring life and personality to each item - for example when an item is found, a popup message will appear to inform the user about the item and their progress in the game. 
+
+Overall, I am thoroughly enjoying every aspect of working on this project. The combination of designing, coding, and crafting narratives has been a engaging and fun experience so far despite some issues with image pathways I have had (now resolved) and I am eagerly looking forward to seeing all the code and the hard work of the group come together - the final game!
 
 **Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
 My role for this project has been working on the environmental assets to be placed on the tiles, such as skeleton barriers in the dungeon, banners on the walls, and treasure chests. 
