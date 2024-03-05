@@ -1,24 +1,30 @@
 let img;
 let scrollSpeed = 0.4;
-let scrollPos = 0;
+let scrollPos;
 
 function preload() {
-  img = loadImage('scroll.png'); // Replace 'your_image.jpg' with the path to your image
+  img = loadImage('scrollletterwithoutbackground.png'); // Replace 'scroll letter.png' with the path to your image
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(700, 500);
+  scrollPos = img.height; // Set initial scroll position to the height of the image
 }
 
 function draw() {
   background(0);
-  image(img, 0, -scrollPos, width, height); // Draw the image with scrolling effect
+  
+  // Calculate the position to draw the image
+  let yPos = scrollPos % img.height;
 
+  // Draw the image with scrolling effect
+  image(img, 0, yPos - img.height, width, height + img.height);
+  
   // Update scroll position
-  scrollPos += scrollSpeed;
+  scrollPos -= scrollSpeed;
 
-  // Reset scroll position if it reaches the bottom of the image
-  if (scrollPos > img.height - height) {
-    scrollPos = 0;
+  // Reset scroll position if it reaches the top of the image
+  if (scrollPos < 0) {
+    scrollPos = img.height;
   }
 }
