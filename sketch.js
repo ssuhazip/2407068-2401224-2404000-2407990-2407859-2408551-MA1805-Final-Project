@@ -137,7 +137,7 @@ function drawTextContent() {
     image(backgroundImage, 0, 0, width, height);
 
     // Set text properties
-    textSize(16); // Set text size to 16 for the text content
+    textSize(15); // Set text size to 16 for the text content
     fill(255);
     textFont(customFont);
 
@@ -148,7 +148,7 @@ function drawTextContent() {
     let yPos = height / 2 - textHeight / 2 + scrollPos;
 
     // Draw the text at the calculated position
-    text(textContent, 50, yPos);
+    text(textContent, 300, yPos);
 
     // Update scroll position
     scrollPos -= scrollSpeed;
