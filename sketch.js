@@ -1,3 +1,4 @@
+//INITIALISE TITLE SCROLL VARIABLES
 let img;
 let scrollSpeed = 0.9;
 let scrollPos;
