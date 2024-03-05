@@ -27,7 +27,8 @@ I have contributed in coding with the prototype of the game's tilemap and have u
 
 Overall, I have so far enjoyed experimenting with the code and I find it satisfying when I can solve issues and problems within the code. 
 
-**Imogen: Designer for enemy sprites/ Coder for enemy sprites-** For the project I have taken the role of both designing and coding all the enemies, which will consist of goblins, knights and a king as a final boss.
+**Imogen: Designer for enemy sprites/ Coder for enemy sprites-** 
+For the project I have taken the role of both designing and coding all the enemies, which will consist of goblins, knights and a king as a final boss.
 
 I have so far created sprites for the goblin enemies, and coded their movement so they target the player. Additionally I have created an animation cycle for the sprites so they face the direction they are walking and move their legs.
 
