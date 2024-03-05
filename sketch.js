@@ -139,7 +139,6 @@ function drawTextContent() {
 
     // Draw the text at the current scroll position
     let yPos = scrollPos;
-
     text(textContent, 50, yPos);
 
     // Update scroll position
