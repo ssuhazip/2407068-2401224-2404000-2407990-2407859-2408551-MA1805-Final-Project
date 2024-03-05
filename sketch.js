@@ -231,21 +231,21 @@ class Player {
             //UP
             if (key === "w") {
                 this.dirX = 0;
-                this.dirY = -1;
+                this.dirY = -1; //up
             }
             //DOWN
             if (key === "s") {
                 this.dirX = 0;
-                this.dirY = 1;
+                this.dirY = 1; //down
             }
             //LEFT
             if (key === "a") {
-                this.dirX = -1;
+                this.dirX = -1; //left
                 this.dirY = 0;
             }
             //RIGHT
             if (key === "d") {
-                this.dirX = 1;
+                this.dirX = 1; //right 
                 this.dirY = 0;
             }
 
