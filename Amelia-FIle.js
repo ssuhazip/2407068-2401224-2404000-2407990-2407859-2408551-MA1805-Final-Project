@@ -83,4 +83,5 @@ function mouseClicked() { // when the mouse is clicked in the button
     }else if (inExitButton){
         // whatever the exit button is going to do
     }
-}
+}// need to add the functions of when pressing the button the game can exit,help or play
+// also need to code the game over screen
