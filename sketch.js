@@ -137,15 +137,20 @@ function drawTextContent() {
     fill(255);
     textFont(customFont);
 
-    // Draw the text at the current scroll position
-    let yPos = scrollPos;
+    // Calculate the height of the text content
+    let textHeight = textContent.split('\n').length * textSize();
+
+    // Calculate the y-position for the text to be centered vertically
+    let yPos = height / 2 - textHeight / 2 + scrollPos;
+
+    // Draw the text at the calculated position
     text(textContent, 50, yPos);
 
     // Update scroll position
     scrollPos -= scrollSpeed;
 
     // Reset scroll position when it exceeds the total height of the text content
-    if (scrollPos < -textContent.split('\n').length * textSize()) {
+    if (scrollPos < -textHeight) {
         gameState = "play"; // Transition to play state after text finishes scrolling
     }
 }
