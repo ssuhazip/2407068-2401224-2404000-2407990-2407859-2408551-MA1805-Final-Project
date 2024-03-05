@@ -10,7 +10,7 @@ let startScreenImage; // Variable to hold the start screen image
 let tilemap = [];
 let numDown = 10;
 let numAcross = 10;
-let tileSize = 60;
+let tileSize = 50;
 
 let textures = [];
 let graphicsMap = [
@@ -51,7 +51,6 @@ let customFont;
 let backgroundImage;
 
 function preload() {
-    img = loadImage('scroll letter.png'); // Replace 'scroll letter.png' with the path to your image
     textures[0] = loadImage("path.png");
     textures[1] = loadImage("wall.png");
 
@@ -88,7 +87,6 @@ function setup() {
         }
     }
     player = new Player(playerSprite, 3, 4, tileSize, playerSpeed, tileSize, tileRules);
-
 }
 
 function draw() {
