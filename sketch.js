@@ -57,13 +57,13 @@ function preload() {
     //player sprite
     playerSprite = loadImage("player.png");
 
-    // Load the image for the start screen
+    // Image for the start screen
     startScreenImage = loadImage("intro screen.png");
 
-    // Load the custom font
+    // Custom font
     customFont = loadFont('MinecraftRegular-Bmg3.otf');
 
-    // Load the background image for the text content
+    // Background image for the text content
     backgroundImage = loadImage('intro screen.png');
 }
 
