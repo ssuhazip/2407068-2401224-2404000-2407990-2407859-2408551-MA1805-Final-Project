@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background (255,0,0,0);
   sprite.update();
   sprite.display();
   if (showRectangle) {
