@@ -50,6 +50,8 @@ In terms of coding, I have coded the movement (e.g., floating) and position of t
 
 Additionally, I have taken on the responsibility of creating item dialogues to bring life and personality to each item - for example when an item is found, a popup message will appear to inform the user about the item and their progress in the game. 
 
+I have also taken on the role of coding and working on the game over screen, where once the character fails to obtain the items/is taken out by an obstacle or enemy sprite, the screen will appear to inform the player that they have to try again or exit/go to start page. "play again" and "main menu" buttons but in red/gray diff contrasting colours which will redirect the player.
+
 Overall, I am thoroughly enjoying every aspect of working on this project. The combination of designing, coding, and crafting narratives has been a engaging and fun experience so far despite some issues with image pathways I have had (now resolved) and I am eagerly looking forward to seeing all the code and the hard work of the group come together - the final game!
 
 **Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
