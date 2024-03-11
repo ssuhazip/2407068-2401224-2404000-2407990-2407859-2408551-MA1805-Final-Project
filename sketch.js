@@ -164,7 +164,7 @@ function drawTextContent() {
     let yPos = height / 2 - textHeight / 2 + scrollPos;
 
     // Draw the text at the calculated position
-    text(textContent, 300, yPos);
+    text(textContent, 300, yPos); //XPos, YPos
 
     // Update scroll position
     scrollPos -= scrollSpeed;
