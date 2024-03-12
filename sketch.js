@@ -5,46 +5,56 @@ let scrollPos;
 
 let gameState = "start";
 let startScreenImage; // Variable to hold the start screen image
-
 //INITIALISE TILEMAP VARIABLES
 let tilemap = [];
 let numDown = 10;
 let numAcross = 10;
 let tileSize = 60;
 
-
 let textures = [];
 let graphicsMap = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, ]
-];
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, ],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+    
+]
 
 let tileRules = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
-    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, ]
-];
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, ],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+]
 
 //INITIALISE PLAYER VARIABLES
 let player;
 let playerSprite;
 let playerSpeed = 5;
 let playerSize = tileSize;
+
+let goblins = [];
+let goblinSize = 30;
+let numGoblins = 2;
+let lastSpriteChangeTime = 0;
+const spriteChangeInterval = 190;
+
+//sprite variables
+let goblinSprite;
+let goblinSprite1;
+let goblinSprite2;
 
 //INITIALISE TEXT VARIABLES
 let textContent = "Dear Rebels,\n\nAs we stand on the edge of history, poised to reshape the destiny of \n\nour kingdom, I write to you with a heart filled with determination and hope. \n\nThe time has come for us to seize control and usher in a new era of \n\nprosperity under our rightful leadership. To achieve this noble goal, we \n\nmust embark on a journey filled with challenges and trials.\n\n \n\nOur quest is clear: we must acquire the three sacred objects that will \n\nlegitimize our claim to the throne– the Sceptre, the Robe, and the \n\nCrown. These artifacts hold immense power and significance, symbols of \n\nthe authority we seek to wield. Yet, they are not easily obtained. Each is \n\nguarded by formidable obstacles, designed to test our resolve and \n\nworthiness.\n\n \n\nThe Sceptre, a symbol of sovereignty and strength, lies hidden within the \n\ndepths of the deep, dark dungeons of the formidable fortress, protected \n\nby ancient traps and guardians.\n\n \n\nWhilst The Robe, imbued with the wisdom and guidance of our ancestors, \n\nis held a floor above the dungeons, within the main hall. To claim it, we \n\nmust navigate the treacherous maze of the winding corridors of the \n\nfortress, overcoming its barriers and outwitting its elusive protectors.\n\n \n\nFinally, the Crown, the ultimate symbol of royal authority, is safeguarded \n\nwithin the daunting throne room. Protected by the loyal forces of the \n\ncurrent regime, breaching its walls will demand courage, strategy, and \n\nsacrifice.\n\n \n\nKnow that the path ahead will be perilous, and the challenges we face \n\nwill test the very limits of our strength and determination. But as we set \n\nforth on this journey, let us stand united in purpose. Together, we shall \n\ndefy the odds, defy our oppressors, and carve our names into the annals \n\nof history as liberators and kings.\n\n \n\nIgor, Leader of the Rebellion"; // Your text content here
@@ -54,27 +64,33 @@ let backgroundImage;
 
 let daggerImage; // Variable to hold the dagger image
 
-let daggerVisible = false; // Boolean variable to track if the dagger is visible or not
+let daggerVisible = false; // Boolean variable to track 
+
 
 function preload() {
-    //textures for the graphicsMap
+
     textures[0] = loadImage("path.png");
     textures[1] = loadImage("wall.png");
 
     //player sprite
     playerSprite = loadImage("player.png");
 
-    // Image for the start screen
-    startScreenImage = loadImage("intro screen.png");
+     // Image for the start screen
+     startScreenImage = loadImage("intro screen.png");
 
-    // Custom font
-    customFont = loadFont('MinecraftRegular-Bmg3.otf');
+     // Custom font
+     customFont = loadFont('MinecraftRegular-Bmg3.otf');
+ 
+     // Background image for the text content
+     backgroundImage = loadImage('Scroll Screen Background.png');
+ 
+     // Load dagger image
+     daggerImage = loadImage('dagger.png');
 
-    // Background image for the text content
-    backgroundImage = loadImage('Scroll Screen Background.png');
-
-    // Load dagger image
-    daggerImage = loadImage('dagger.png');
+     //goblin Sprites
+    goblinSprite1 = loadImage("goblin1.png");
+    goblinSprite2 = loadImage("goblin3.png");
+    
 }
 
 function setup() {
@@ -91,15 +107,30 @@ function setup() {
     for (let across = 0; across < numAcross; across++) {
         tilemap[across] = [];
         for (let down = 0; down < numDown; down++) {
-            let textureNum = graphicsMap[down][across];
-            tilemap[across][down] = new Tile(textures[textureNum], across, down, tileSize, tileID);
+           
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+           tilemap[across][down] = new Tile(textures[textureNum], across, down, tileSize, tileID);
+
             tileID++;
         }
+        player = new Player(playerSprite, 3, 4, tileSize, playerSpeed, tileSize, tileRules);
+
     }
-    player = new Player(playerSprite, 3, 4, tileSize, playerSpeed, tileSize, tileRules);
+
+    
+    for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+        goblins[enemyCount] = new Goblin(goblinSprite1,
+                                        random(0, width),
+                                        random(0, height),
+                                        goblinSize, tileRules)
+    }
+    
 }
 
 function draw() {
+    background(0);
+
     //starter page code
     if (gameState === "start") {
         drawStartPage();
@@ -108,9 +139,11 @@ function draw() {
     } else if (gameState === "play") {
         drawGame();
     }
+
 }
 
 function keyPressed() {
+    
     if (keyCode === 32) { // Space bar
         if (gameState === "start") {
             gameState = "text"; // Transition to text state
@@ -120,8 +153,20 @@ function keyPressed() {
             player.setDirection(); 
         }
     }
-    player.setDirection(); //allows the player to move across the tiles
-}
+
+    if (millis() - lastSpriteChangeTime > spriteChangeInterval) {
+        for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+            goblins[enemyCount].switchSprite();
+        }
+        lastSpriteChangeTime = millis();
+    }
+
+   
+    for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+        goblins[enemyCount].display();
+    }
+    player.setDirection();
+}   
 
 function mouseClicked() {
     // Check if the mouse is clicked on the canvas
@@ -175,7 +220,6 @@ function drawTextContent() {
     }
 }
 
-
 function drawGame() {
     background(0);
     //draws the first level/stage of the game
@@ -193,7 +237,12 @@ function drawGame() {
         // Draw the dagger at the player's position
         image(daggerImage, player.xPos, player.yPos, player.size, player.size);
     }
+
+    for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+        goblins[enemyCount].display();
 }
+}
+
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
@@ -221,10 +270,10 @@ class Tile {
         noStroke();
         fill(255);
         textAlign(LEFT, TOP);
-
+        
         text(this.tileID, this.xPos, this.yPos);
     }
-
+ 
 }
 
 class Player {
@@ -243,7 +292,7 @@ class Player {
         this.dirY = 0;
 
         this.isMoving = false;
-
+        
         this.tx = this.xPos;
         this.ty = this.yPos;
 
@@ -251,45 +300,45 @@ class Player {
     setDirection() {
         if (!this.isMoving) {
             //UP
-            if (key === "w") {
+            if(key === "w") {
                 this.dirX = 0;
-                this.dirY = -1; //up
+                this.dirY = -1;
             }
             //DOWN
-            if (key === "s") {
+            if(key === "s") {
                 this.dirX = 0;
-                this.dirY = 1; //down
+                this.dirY = 1;
             }
             //LEFT
-            if (key === "a") {
-                this.dirX = -1; //left
+            if(key === "a") {
+                this.dirX = -1;
                 this.dirY = 0;
             }
             //RIGHT
-            if (key === "d") {
-                this.dirX = 1; //right 
+            if(key === "d") {
+                this.dirX = 1;
                 this.dirY = 0;
             }
 
-            this.checkTargetTile();
+            this.checkTargetTile();    
         }
-    }
+    } 
 
     checkTargetTile() {
         this.across = Math.floor(this.xPos / this.tileSize);
         this.down = Math.floor(this.yPos / this.tileSize);
 
         let nextTileHorizontal = this.across + this.dirX;
-        let nextTileVertical = this.down + this.dirY;
+        let nextTileVertical = this.down +this.dirY;
 
         if (
             nextTileHorizontal >= 0 && //top of map
             nextTileHorizontal < numAcross &&
             nextTileVertical >= 0 &&
-            nextTileVertical < numDown
-        ) {
+            nextTileVertical < numDown 
+           ) {
 
-            if (this.tileRules[nextTileVertical][nextTileHorizontal] != 1) {
+            if(this.tileRules[nextTileVertical][nextTileHorizontal] !=1) {
                 this.tx = nextTileHorizontal * tileSize;
                 this.ty = nextTileVertical * tileSize;
 
@@ -299,11 +348,11 @@ class Player {
     }
 
     move() {
-        if (this.isMoving) {
+        if(this.isMoving) {
             this.xPos += this.speed * this.dirX;
             this.yPos += this.speed * this.dirY;
 
-            if (this.xPos === this.tx && this.yPos === this.ty) {
+            if(this.xPos === this.tx && this.yPos === this.ty) {
                 this.isMoving = false;
                 this.dirX = 0;
                 this.dirY = 0;
@@ -312,8 +361,64 @@ class Player {
 
     }
 
+display() {
+    imageMode(CORNER);
+    image(this.sprite, this.xPos, this.yPos, this.size, this.size);
+    }
+}
+
+class Goblin {
+    constructor(sprite, x, y, size, speed) {
+        this.sprite = sprite;
+        this.sprites = [goblinSprite1, goblinSprite2];
+        this.currentSpriteIndex = 0;
+        this.x = x;
+        this.y = y;
+        this.targetX = 8;
+		this.targetY = 8;
+        this.size = 100, 100;
+        this.speed = 0.8
+        this.direction = 'right';
+        this.player = player;
+    }
+
     display() {
-        imageMode(CORNER);
-        image(this.sprite, this.xPos, this.yPos, this.size, this.size);
+        if (this.direction === 'left') {
+            // Flip horizontally
+            scale(-1, 1);
+            image(this.sprite, -this.x - this.size, this.y, this.size, this.size);
+            scale(-1, 1); // Reset scale
+        } else {
+            image(this.sprite, this.x, this.y, this.size, this.size);
+        }
+        this.update();
+    
+}
+
+
+       update() {
+        let dx = this.player.xPos - this.x;
+        let dy = this.player.yPos - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // Normalize the direction vector
+        dx /= distance;
+        dy /= distance;
+
+        // Move the goblin towards the player
+        this.x += dx * this.speed;
+        this.y += dy * this.speed;
+
+        // Update direction based on movement
+        if (dx > 0) {
+            this.direction = 'right';
+        } else {
+            this.direction = 'left';
+        }
+    }
+
+    switchSprite() {
+        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
+        this.sprite = this.sprites[this.currentSpriteIndex];
     }
 }
