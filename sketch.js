@@ -66,6 +66,39 @@ let daggerImage; // Variable to hold the dagger image
 
 let daggerVisible = false; // Boolean variable to track 
 
+///INITIALISE BUTTON VARIABLES
+let menuBg;
+let Title;
+
+// GENERIC BUTTON VARIABLES
+let buttonY = 420;
+let buttonCentre = 55; // distance from the edge to the centre of the button
+let buttonSizeX = 575;
+let buttonSizeY = 575;
+
+
+// PLAY BUTTON VARIABLES
+let playText;
+let playButton;
+let buttonHighlight;
+let playButtonX = 40; 
+let playButtonDistance; 
+let inPlayButton = false; 
+
+// HELP BUTTON VARIABLES
+let helpText;
+let helpButton; // use same logic for these buttons but diff X and Y
+let helpButtonX = 230;
+let helpButtonDistance;
+let inHelpButton = false;
+
+// EXIT BUTTON VARIABLES
+let exitText;
+let exitButton; // ^ 
+let exitButtonX = 420;
+let exitButtonDistance;
+let inExitButton = false;
+
 
 function preload() {
 
@@ -132,6 +165,16 @@ function preload() {
  
      // Background image for the text content
      backgroundImage = loadImage('Scroll Screen Background.png');
+     
+     // Title screen
+     Title = loadImage("assets/Title.png");
+    playButton = loadImage("assets/squareButton.png");
+    buttonHighlight = loadImage("assets/buttonHighlightGreen.png");
+    playText = loadImage("assets/playButtonText.png");
+    helpButton = loadImage("assets/squareButton.png");
+    helpText = loadImage("assets/helpButtonText.png");
+    exitButton = loadImage("assets/squareButton.png");
+    exitText = loadImage("assets/exitButtonText.png");
  
      // Load dagger image
      daggerImage = loadImage('dagger.png');
@@ -223,6 +266,18 @@ function mouseClicked() {
         // Toggle the visibility of the dagger
         daggerVisible = !daggerVisible;
     }
+
+    if (gameState === "start") {
+        if(inPlayButton){
+            gameState = "text"; // Transition to text state
+        } 
+
+
+        } else if (gameState === "text") {
+            gameState = "play"; // Transition to play state after text finishes scrolling
+        } else if (gameState === "play") {
+            
+        }
 }
 
 function drawStartPage() {
@@ -230,16 +285,38 @@ function drawStartPage() {
     image(startScreenImage, 0, 0, width, height);
 
     // Set text properties
-    textSize(32); // Set text size to 32 for the intro screen
-    textAlign(CENTER);
-    fill(255);
-    textFont(customFont);
+    image(Title, 70, 20, 500, 200);
+        // PLAY BUTTON
+        image(playButton, playButtonX,buttonY, buttonSizeX, buttonSizeY);
+        image(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
+        image(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
+    
+        playButtonDistance = dist(playButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+        if (playButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
+            inPlayButton = true;
+            image(buttonHighlight, playButtonX, buttonY, buttonSizeX, buttonSizeY);
+        
+        }else {
+            inPlayButton = false;
+        }
+        image(playText, playButtonX + 25, buttonY + 40, 90, 50);
 
-    // Draw the welcome message
-    text("Welcome to Reign of Rebels!", width / 2, height / 2 - 20);
+        // HELP BUTTON
+        helpButtonDistance = dist(helpButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+        if (helpButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
+            inHelpButton = true;
+            image(buttonHighlight, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
+        }
+        
+        exitButtonDistance = dist(exitButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+        if (exitButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
+            inExitButton = true;
+            image(buttonHighlight, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
 
-    // Draw the instruction to start the game
-    text("Press SPACEBAR to start", width / 2, height / 2 + 20);
+        }
+        image(helpText, helpButtonX + 25, buttonY + 40, 90, 50);
+        // EXIT BUTTON
+        image(exitText, exitButtonX + 25, buttonY + 40, 90, 50);
 }
 
 function drawTextContent() {
@@ -258,7 +335,7 @@ function drawTextContent() {
     let yPos = height / 2 - textHeight / 2 + scrollPos;
 
     // Draw the text at the calculated position
-    text(textContent, 300, yPos); //XPos, YPos
+    text(textContent, 30, yPos); //XPos, YPos
 
     // Update scroll position
     scrollPos -= scrollSpeed;
