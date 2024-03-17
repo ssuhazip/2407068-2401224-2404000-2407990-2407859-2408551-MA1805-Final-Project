@@ -13,30 +13,30 @@ let tileSize = 60;
 
 let textures = [];
 let graphicsMap = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, ],
-    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+    [16, 17, 39, 17, 33, 34, 17, 17, 17, 18, ],
+    [19, 20, 40, 20, 35, 36, 20, 20, 20, 21, ],
+    [31, 0, 1, 2, 2, 2, 2, 3, 7, 23, ],
+    [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+    [22, 4, 0, 0, 0, 0, 0, 0, 7, 30, ],
+    [22, 4, 0, 0, 0, 0, 0, 0, 11, 23, ],
+    [22, 4, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [22, 12, 0, 0, 0, 0, 0, 0, 15, 23, ],
+    [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
     
 ]
 
 let tileRules = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, ],
-    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, ],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
+    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, ]
 ]
 
 //INITIALISE PLAYER VARIABLES
@@ -69,8 +69,57 @@ let daggerVisible = false; // Boolean variable to track
 
 function preload() {
 
-    textures[0] = loadImage("path.png");
-    textures[1] = loadImage("wall.png");
+    textures[0] = loadImage("assets/path/path_1a.png");
+    textures[1] = loadImage("assets/path/path_1b.png");
+    textures[2] = loadImage("assets/path/path_1c.png");
+    textures[3] = loadImage("assets/path/path_1d.png");
+
+    textures[4] = loadImage("assets/path/path_2a.png");
+    textures[5] = loadImage("assets/path/path_2b.png");
+    textures[6] = loadImage("assets/path/path_2c.png");
+    textures[7] = loadImage("assets/path/path_2d.png");
+
+    textures[8] = loadImage("assets/path/path_3a.png");
+    textures[9] = loadImage("assets/path/path_3b.png");
+    textures[10] = loadImage("assets/path/path_3c.png");
+    textures[11] = loadImage("assets/path/path_3d.png");
+
+    textures[12] = loadImage("assets/path/path_4a.png");
+    textures[13] = loadImage("assets/path/path_4b.png");
+    textures[14] = loadImage("assets/path/path_4c.png");
+    textures[15] = loadImage("assets/path/path_4d.png");
+
+
+    textures[16] = loadImage("assets/wall/wall_1a.png");
+    textures[17] = loadImage("assets/wall/wall_1b.png");
+    textures[18] = loadImage("assets/wall/wall_1c.png");
+    textures[19] = loadImage("assets/wall/wall_2a.png");
+    textures[20] = loadImage("assets/wall/wall_2b.png");
+    textures[21] = loadImage("assets/wall/wall_2c.png");
+    textures[22] = loadImage("assets/wall/wall_3a.png");
+    textures[23] = loadImage("assets/wall/wall_3c.png");
+    textures[24] = loadImage("assets/wall/wall_4a.png");
+    textures[25] = loadImage("assets/wall/wall_4b.png");
+    textures[26] = loadImage("assets/wall/wall_4c.png");
+    textures[27] = loadImage("assets/wall/wall_4d.png");
+    textures[28] = loadImage("assets/wall/wall_5a.png");
+    textures[29] = loadImage("assets/wall/wall_5b.png");
+
+    textures[30] = loadImage("assets/wall/wall_3c_barrel.png");
+    textures[31] = loadImage("assets/wall/wall_3a_barrel.png");
+    textures[32] = loadImage("assets/wall/wall_3a_skull.png");
+    textures[33] = loadImage("assets/wall/wall_door_1a.png");
+    textures[34] = loadImage("assets/wall/wall_door_1b.png");
+    textures[35] = loadImage("assets/wall/wall_door_2a.png");
+    textures[36] = loadImage("assets/wall/wall_door_2b.png");
+    textures[37] = loadImage("assets/path/path_barrel.png");
+    textures[38] = loadImage("assets/path/path_skull.png");
+    
+
+    textures[39] = loadImage("assets/wall/wall_1b_banner.png");
+    textures[40] = loadImage("assets/wall/wall_2b_banner.png");
+    textures[41] = loadImage("assets/path/path_skull_bones.png");
+    textures[42] = loadImage("assets/path/path_bones.png");
 
     //player sprite
     playerSprite = loadImage("player.png");
