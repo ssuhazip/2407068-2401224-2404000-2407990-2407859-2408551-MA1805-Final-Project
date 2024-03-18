@@ -1,6 +1,6 @@
 //INITIALISE TITLE SCROLL VARIABLES
 let img;
-let scrollSpeed = 0.6;
+let scrollSpeed = 0.5;
 let scrollPos;
 
 let gameState = "start";
@@ -560,6 +560,7 @@ display() {
     image(this.sprite, this.xPos, this.yPos, this.size, this.size);
     }
 }
+
 
 class Goblin {
     constructor(sprite, x, y, size, speed) {
