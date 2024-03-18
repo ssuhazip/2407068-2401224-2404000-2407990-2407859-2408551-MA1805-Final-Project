@@ -1,6 +1,6 @@
 //INITIALISE TITLE SCROLL VARIABLES
 let img;
-let scrollSpeed = 0.9;
+let scrollSpeed = 0.6;
 let scrollPos;
 
 let gameState = "start";
