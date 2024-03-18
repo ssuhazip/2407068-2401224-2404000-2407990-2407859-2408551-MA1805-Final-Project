@@ -18,10 +18,10 @@ let graphicsMap = [
     [31, 0, 1, 2, 2, 2, 2, 3, 7, 23, ],
     [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
     [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
-    [22, 4, 0, 0, 0, 0, 0, 0, 7, 30, ],
-    [22, 4, 0, 0, 0, 0, 0, 0, 11, 23, ],
-    [22, 4, 0, 0, 0, 0, 0, 0, 7, 23, ],
-    [22, 12, 0, 0, 0, 0, 0, 0, 15, 23, ],
+    [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
+    [22, 4, 0, 0, 0, 0, 41, 0, 11, 23, ],
+    [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [31, 12, 0, 0, 0, 0, 0, 0, 41, 30, ],
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
     
 ]
@@ -386,19 +386,8 @@ class Tile {
         image(this.texture, this.xPos, this.yPos, this.tileSize);
     }
 
-    debug() {
-        //TILE
-        stroke(245);
-        noFill();
-        rect(this.xPos, this.yPos, this.tileSize, this.tileSize);
-
-        //LABEL
-        noStroke();
-        fill(255);
-        textAlign(LEFT, TOP);
-        
-        text(this.tileID, this.xPos, this.yPos);
-    }
+   debug() {}
+   
  
 }
 
