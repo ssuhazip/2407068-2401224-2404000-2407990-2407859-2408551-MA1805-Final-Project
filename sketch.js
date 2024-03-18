@@ -387,17 +387,7 @@ class Tile {
     }
 
     debug() {
-        //TILE
-        stroke(245);
-        noFill();
-        rect(this.xPos, this.yPos, this.tileSize, this.tileSize);
-
-        //LABEL
-        noStroke();
-        fill(255);
-        textAlign(LEFT, TOP);
         
-        text(this.tileID, this.xPos, this.yPos);
     }
  
 }
