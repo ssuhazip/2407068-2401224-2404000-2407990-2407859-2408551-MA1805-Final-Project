@@ -155,10 +155,10 @@ function preload() {
     textures[42] = loadImage("assets/path/path_bones.png");
 
     //player sprite
-    playerSprite = loadImage("player.png");
+    playerSprite = loadImage("player images/player.png");
 
      // Image for the start screen
-     startScreenImage = loadImage("intro screen.png");
+     startScreenImage = loadImage("assets/intro screen.png");
 
      // Custom font
      customFont = loadFont('MinecraftRegular-Bmg3.otf');
