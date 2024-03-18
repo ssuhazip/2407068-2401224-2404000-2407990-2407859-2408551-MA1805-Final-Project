@@ -16,14 +16,13 @@ let graphicsMap = [
     [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
     [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
     [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
-    [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
     [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
     [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
-    [22, 4, 0, 0, 0, 0, 41, 0, 11, 23, ],
-    [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [22, 4, 0, 42, 0, 0, 41, 0, 11, 23, ],
+    [31, 37, 0, 0, 41, 0, 0, 0, 7, 23, ],
     [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
-    
 ]
 
 let tileRules = [
@@ -47,7 +46,7 @@ let playerSize = tileSize;
 
 let goblins = [];
 let goblinSize = 30;
-let numGoblins = 2;
+let numGoblins = 4;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
 
@@ -235,7 +234,7 @@ function setup() {
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount] = new Goblin(goblinSprite1,
                                         random(0, width),
-                                        random(0, height),
+                                        random(0, height), 
                                         goblinSize, tileRules)
     }
     
@@ -571,7 +570,7 @@ class Goblin {
         this.y = y;
         this.targetX = 8;
 		this.targetY = 8;
-        this.size = 100, 100;
+        this.size = 80, 80;
         this.speed = 0.8
         this.direction = 'right';
         this.player = player;
