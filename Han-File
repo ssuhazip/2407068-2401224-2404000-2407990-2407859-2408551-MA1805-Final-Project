@@ -5,6 +5,7 @@ let scrollPos;
 
 let gameState = "start";
 let startScreenImage; // Variable to hold the start screen image
+
 //INITIALISE TILEMAP VARIABLES
 let tilemap = [];
 let numDown = 10;

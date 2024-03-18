@@ -214,7 +214,7 @@ function setup() {
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount] = new Goblin(goblinSprite1,
                                         random(0, width),
-                                        random(0, height),
+                                        random(0, height), 
                                         goblinSize, tileRules)
     }
     
