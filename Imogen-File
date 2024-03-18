@@ -47,14 +47,25 @@ let playerSize = tileSize;
 
 let goblins = [];
 let goblinSize = 30;
+let knights = [];
+let knightsize =  tileSize;
 let numGoblins = 2;
+let numKnights = 3;
+let king = [];
+let kingSize = 30;
+let numKing = 1;
 let lastSpriteChangeTime = 0;
-const spriteChangeInterval = 190;
+const spriteChangeInterval = 180;
 
 //sprite variables
 let goblinSprite;
 let goblinSprite1;
 let goblinSprite2;
+let knightSprite;
+let knightSprite1;
+let knightSprite2;
+let kingSprite1;
+let kingSprite2;
 
 //INITIALISE TEXT VARIABLES
 let textContent = "Dear Rebels,\n\nAs we stand on the edge of history, poised to reshape the destiny of \n\nour kingdom, I write to you with a heart filled with determination and hope. \n\nThe time has come for us to seize control and usher in a new era of \n\nprosperity under our rightful leadership. To achieve this noble goal, we \n\nmust embark on a journey filled with challenges and trials.\n\n \n\nOur quest is clear: we must acquire the three sacred objects that will \n\nlegitimize our claim to the throne– the Sceptre, the Robe, and the \n\nCrown. These artifacts hold immense power and significance, symbols of \n\nthe authority we seek to wield. Yet, they are not easily obtained. Each is \n\nguarded by formidable obstacles, designed to test our resolve and \n\nworthiness.\n\n \n\nThe Sceptre, a symbol of sovereignty and strength, lies hidden within the \n\ndepths of the deep, dark dungeons of the formidable fortress, protected \n\nby ancient traps and guardians.\n\n \n\nWhilst The Robe, imbued with the wisdom and guidance of our ancestors, \n\nis held a floor above the dungeons, within the main hall. To claim it, we \n\nmust navigate the treacherous maze of the winding corridors of the \n\nfortress, overcoming its barriers and outwitting its elusive protectors.\n\n \n\nFinally, the Crown, the ultimate symbol of royal authority, is safeguarded \n\nwithin the daunting throne room. Protected by the loyal forces of the \n\ncurrent regime, breaching its walls will demand courage, strategy, and \n\nsacrifice.\n\n \n\nKnow that the path ahead will be perilous, and the challenges we face \n\nwill test the very limits of our strength and determination. But as we set \n\nforth on this journey, let us stand united in purpose. Together, we shall \n\ndefy the odds, defy our oppressors, and carve our names into the annals \n\nof history as liberators and kings.\n\n \n\nIgor, Leader of the Rebellion"; // Your text content here
@@ -90,6 +101,10 @@ function preload() {
      //goblin Sprites
     goblinSprite1 = loadImage("goblin1.png");
     goblinSprite2 = loadImage("goblin3.png");
+    knightSprite1 = loadImage("knight 2.png");
+    knightSprite2 = loadImage("knight 3.png");
+    kingSprite1 = loadImage("king 1.png");
+    
     
 }
 
@@ -118,15 +133,33 @@ function setup() {
 
     }
 
-    
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
-        goblins[enemyCount] = new Goblin(goblinSprite1,
+        goblins[enemyCount] = new Enemy(goblinSprite1,
                                         random(0, width),
                                         random(0, height),
                                         goblinSize, tileRules)
     }
-    
+
+    for (let knightCount = 0; knightCount < numKnights; knightCount++) {
+        knights[knightCount] = new Knight(knightSprite1,
+                                          random(0, width),
+                                          random(0, height),
+                                          goblinSize, tileRules)
+    }    
+   
+    let kingTileX = 4; // Column index of tile 43 (zero-based index)
+    let kingTileY = 3; // Row index of tile 43 (zero-based index)
+    let kingX = kingTileX * tileSize; // Convert tile coordinates to pixel coordinates
+    let kingY = kingTileY * tileSize; // Convert tile coordinates to pixel coordinates
+
+    // Add king object with specified position
+    for (let kingCount = 0; kingCount < numKing; kingCount++) {
+        king[kingCount] = new King(kingSprite1, kingX, kingY, kingSize);
+    }
 }
+     
+    
+
 
 function draw() {
     background(0);
@@ -140,6 +173,7 @@ function draw() {
         drawGame();
     }
 
+    
 }
 
 function keyPressed() {
@@ -240,12 +274,24 @@ function drawGame() {
 
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
+        goblins[enemyCount].update();
 }
+
+    for (let knightCount = 0; knightCount < numKnights; knightCount++) {
+    knights[knightCount].display();
+    knights[knightCount].update();
+}
+
+
+    for (let kingCount = 0; kingCount < numKing; kingCount++) {
+    king[kingCount].display();
+    king[kingCount].update();
+    }
 }
 
 
 class Tile {
-    constructor(texture, across, down, tileSize, tileID) {
+    constructor(texture, across, down, tileSize, tileID, isWall) {
         this.texture = texture;
         this.across = across;
         this.down = down;
@@ -253,6 +299,13 @@ class Tile {
         this.yPos = down * tileSize;
         this.tileSize = tileSize;
         this.tileID = tileID;
+        this.isWall = isWall;
+
+        function setWall(isWall) {
+            this.isWall = isWall;
+        }
+    
+        
     }
 
     display() {
@@ -367,7 +420,7 @@ display() {
     }
 }
 
-class Goblin {
+class Enemy{
     constructor(sprite, x, y, size, speed) {
         this.sprite = sprite;
         this.sprites = [goblinSprite1, goblinSprite2];
@@ -377,27 +430,10 @@ class Goblin {
         this.targetX = 8;
 		this.targetY = 8;
         this.size = 100, 100;
-        this.speed = 0.8
+        this.speed = 0.5
         this.direction = 'right';
         this.player = player;
-
-        this.spawn();
-    }
-
-    spawn() {
-        let isValidSpawn = false;
-        while (!isValidSpawn) {
-            // Generate random coordinates within the canvas bounds
-            this.x = Math.floor(random(0, width - this.size));
-            this.y = Math.floor(random(0, height - this.size));
-
-            // Check if the spawn position is not on a wall tile
-            let tileX = Math.floor(this.x / tileSize);
-            let tileY = Math.floor(this.y / tileSize);
-            if (tileRules[tileY][tileX] !== 1) {
-                isValidSpawn = true;
-            }
-        }
+        this.tileRules = tileRules;
     }
 
     display() {
@@ -418,26 +454,27 @@ class Goblin {
         let dx = this.player.xPos - this.x;
         let dy = this.player.yPos - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
+        let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
+        let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
         
-        // Normalize the direction vector
+        
         dx /= distance;
         dy /= distance;
-    
-        // Calculate the next position of the goblin
-        let nextX = this.x + dx * this.speed;
-        let nextY = this.y + dy * this.speed;
-    
-        // Check if the next position is inside a wall tile
-        let nextTileX = Math.floor(nextX / tileSize);
-        let nextTileY = Math.floor(nextY / tileSize);
-    
-        if (tileRules[nextTileY][nextTileX] !== 1) {
-            // Move the goblin towards the player if the next position is not a wall tile
-            this.x = nextX;
-            this.y = nextY;
+
+        
+        if (
+            nextTileHorizontal >= 0 && // Top of map
+            nextTileHorizontal < numAcross &&
+            nextTileVertical >= 0 &&
+            nextTileVertical < numDown &&
+            tileRules[nextTileVertical][nextTileHorizontal] != 1
+        ) {
+            this.x += dx * this.speed;
+            this.y += dy * this.speed;
+        } else {
         }
-    
-        // Update direction based on movement
+
+        
         if (dx > 0) {
             this.direction = 'right';
         } else {
@@ -449,4 +486,93 @@ class Goblin {
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
         this.sprite = this.sprites[this.currentSpriteIndex];
     }
+}
+
+
+
+
+class Knight extends Enemy {
+    constructor(sprite, x, y, size, speed) {
+        super(sprite, x, y, size, speed);
+        this.size = 150, 150;
+        this.speed = 0.5
+        this.sprites = [knightSprite1, knightSprite2]; // Add knight sprites
+        this.currentSpriteIndex = 0;
+        this.direction = 'right';
+        this.player = player; 
+        this.lastSpriteChangeTime = 0;
+        this.spriteChangeInterval = 190;
+        this.tileRules = tileRules;
+    }
+
+    display() {
+
+        
+        if (this.direction === 'left') {
+            // Flip horizontally
+            scale(-1, 1);
+            image(this.sprite, -this.x - this.size, this.y, this.size, this.size);
+            scale(-1, 1); 
+        } else {
+            image(this.sprite, this.x, this.y, this.size, this.size);
+        }
+        this.update();
+    }
+
+    update() {
+        let dx = this.player.xPos - this.x;
+        let dy = this.player.yPos - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
+        let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
+
+        
+        dx /= distance;
+        dy /= distance;
+
+        
+        if (
+            nextTileHorizontal >= 0 && // Top of map
+            nextTileHorizontal < numAcross &&
+            nextTileVertical >= 0 &&
+            nextTileVertical < numDown &&
+            tileRules[nextTileVertical][nextTileHorizontal] != 1
+        ) {
+            this.x += dx * this.speed;
+            this.y += dy * this.speed;
+        } else {
+           
+        }
+        
+    
+        
+        if (dx > 0) {
+            this.direction = 'right';
+        } else {
+            this.direction = 'left';
+        }
+
+        if (millis() - this.lastSpriteChangeTime > this.spriteChangeInterval) {
+            this.switchSprite();
+            this.lastSpriteChangeTime = millis();
+        }
+    }
+
+    switchSprite() {
+        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
+        this.sprite = this.sprites[this.currentSpriteIndex];
+    }
+  
+}
+
+class King extends Enemy{
+    constructor(sprite, x, y, size, ) {
+        super(sprite, x, y, size, );
+        this.size = 100, 100;
+        this.sprites = [kingSprite1];
+
+        
+}
+
+update(){}
 }
