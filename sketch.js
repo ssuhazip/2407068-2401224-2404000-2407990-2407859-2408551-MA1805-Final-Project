@@ -180,8 +180,8 @@ function preload() {
      daggerImage = loadImage('dagger.png');
 
      //goblin Sprites
-    goblinSprite1 = loadImage("goblin1.png");
-    goblinSprite2 = loadImage("goblin3.png");
+    goblinSprite1 = loadImage("goblin images/goblin1.png");
+    goblinSprite2 = loadImage("goblin images/goblin3.png");
     
 }
 
