@@ -442,25 +442,40 @@ class Player {
     checkTargetTile() {
         this.across = Math.floor(this.xPos / this.tileSize);
         this.down = Math.floor(this.yPos / this.tileSize);
-
+    
         let nextTileHorizontal = this.across + this.dirX;
-        let nextTileVertical = this.down +this.dirY;
-
+        let nextTileVertical = this.down + this.dirY;
+    
         if (
-            nextTileHorizontal >= 0 && //top of map
+            nextTileHorizontal >= 0 &&
             nextTileHorizontal < numAcross &&
             nextTileVertical >= 0 &&
-            nextTileVertical < numDown 
-           ) {
-
-            if(this.tileRules[nextTileVertical][nextTileHorizontal] !=1) {
+            nextTileVertical < numDown
+        ) {
+            // Check if the next tile is a trap tile (skull or bones)
+            if (
+                graphicsMap[nextTileVertical][nextTileHorizontal] === 41 ||
+                graphicsMap[nextTileVertical][nextTileHorizontal] === 42
+            ) {
+                // Player steps on a trap tile, trigger death
+                this.playerDied();
+            } else if (tileRules[nextTileVertical][nextTileHorizontal] != 1) {
                 this.tx = nextTileHorizontal * tileSize;
                 this.ty = nextTileVertical * tileSize;
-
+    
                 this.isMoving = true;
             }
         }
     }
+    
+    playerDied() {
+        // Reset player position or perform any other actions when the player dies
+        console.log("Player died!");
+        // Example: Reset player position to starting position
+        this.xPos = this.startAcross * this.tileSize;
+        this.yPos = this.startDown * this.tileSize;
+    }
+    
 
     move() {
         if(this.isMoving) {
