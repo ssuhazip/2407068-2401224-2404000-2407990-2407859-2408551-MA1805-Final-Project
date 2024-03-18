@@ -161,7 +161,7 @@ function preload() {
      startScreenImage = loadImage("assets/intro screen.png");
 
      // Custom font
-     customFont = loadFont('MinecraftRegular-Bmg3.otf');
+     customFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
  
      // Background image for the text content
      backgroundImage = loadImage('assets/Scroll Screen Background.png');
