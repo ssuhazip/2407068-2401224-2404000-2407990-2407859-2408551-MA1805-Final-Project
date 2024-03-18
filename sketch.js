@@ -386,8 +386,8 @@ class Tile {
         image(this.texture, this.xPos, this.yPos, this.tileSize);
     }
 
-   // debug()
-   //use debug or console.log to check code {}
+   debug() {}
+   //use debug or console.log to check code 
  
 }
 
