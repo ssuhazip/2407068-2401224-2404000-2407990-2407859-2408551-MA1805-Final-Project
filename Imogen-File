@@ -200,6 +200,12 @@ function keyPressed() {
         goblins[enemyCount].display();
     }
     player.setDirection();
+
+    if (keyCode === 32) { // Space bar
+        if (gameState === "gameOver") {
+            restartGame();
+        }
+    }
 }   
 
 function mouseClicked() {
@@ -287,8 +293,65 @@ function drawGame() {
     king[kingCount].display();
     king[kingCount].update();
     }
+
+    for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+        if (checkCollision(player, goblins[enemyCount])) {
+            // Transition to game over state if collision detected
+            gameState = "gameOver";
+            break; // Exit loop early since game is over
+        }
+    }
+
+    // Check for collisions between player and knights
+    for (let knightCount = 0; knightCount < numKnights; knightCount++) {
+        if (checkCollision(player, knights[knightCount])) {
+            // Transition to game over state if collision detected
+            gameState = "gameOver";
+            break; // Exit loop early since game is over
+        }
+    }
+
+    // Check for collisions between player and king
+    for (let kingCount = 0; kingCount < numKing; kingCount++) {
+        if (checkCollision(player, king[kingCount])) {
+            // Transition to game over state if collision detected
+            gameState = "gameOver";
+            break; // Exit loop early since game is over
+        }
+    }
+
+    if (gameState !== "gameOver") {
+        // Draw game elements as before
+        // ...
+    } else {
+        // Draw game over screen or message
+        drawGameOver();
+    }
 }
 
+function checkCollision(player, enemy) {
+    // Calculate distance between player and enemy centers
+    let distance = dist(player.xPos, player.yPos, enemy.x, enemy.y);
+    // If the distance is less than the sum of their radii, a collision occurs
+    return distance < (player.size / 2 + enemy.size / 2);
+}
+
+function drawGameOver() {
+    // Display game over screen or message
+    background(255, 0, 0); // Red background indicating game over
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("Game Over", width / 2, height / 2);
+    textSize(16);
+    text("Press SPACEBAR to restart", width / 2, height / 2 + 30);
+}
+
+function restartGame() {
+    // Reset player position and any other necessary game state
+    gameState = "start";
+    // Additional reset logic if needed
+}
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID, isWall) {
@@ -576,3 +639,6 @@ class King extends Enemy{
 
 update(){}
 }
+    
+
+
