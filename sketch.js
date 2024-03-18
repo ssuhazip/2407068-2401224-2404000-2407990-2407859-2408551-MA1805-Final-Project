@@ -46,7 +46,7 @@ let playerSize = tileSize;
 
 let goblins = [];
 let goblinSize = 30;
-let numGoblins = 2;
+let numGoblins = 4;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
 
