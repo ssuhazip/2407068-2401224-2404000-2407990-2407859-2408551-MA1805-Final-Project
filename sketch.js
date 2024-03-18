@@ -18,10 +18,17 @@ let graphicsMap = [
     [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
     [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
     [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+<<<<<<< HEAD
     [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
     [22, 4, 0, 0, 0, 0, 41, 0, 11, 23, ],
     [31, 37, 0, 0, 0, 0, 0, 0, 7, 23, ],
     [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
+=======
+    [22, 4, 0, 0, 0, 0, 0, 0, 7, 30, ],
+    [22, 4, 0, 0, 0, 0, 0, 0, 11, 23, ],
+    [22, 4, 0, 0, 0, 0, 0, 0, 7, 23, ],
+    [22, 12, 0, 0, 0, 0, 0, 0, 15, 23, ],
+>>>>>>> 0fefc6d3bff358d3c4193da2386aeaff9564a082
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
     
 ]
@@ -180,8 +187,8 @@ function preload() {
      daggerImage = loadImage('dagger.png');
 
      //goblin Sprites
-    goblinSprite1 = loadImage("goblin1.png");
-    goblinSprite2 = loadImage("goblin3.png");
+    goblinSprite1 = loadImage("goblin images/goblin1.png");
+    goblinSprite2 = loadImage("goblin images/goblin3.png");
     
 }
 
@@ -387,7 +394,7 @@ class Tile {
     }
 
    debug() {}
-   
+   //use debug or console.log to check code 
  
 }
 
