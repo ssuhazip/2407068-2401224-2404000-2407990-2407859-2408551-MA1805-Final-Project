@@ -99,6 +99,24 @@ let exitButtonX = 420;
 let exitButtonDistance;
 let inExitButton = false;
 
+// DIALOGUE VARIABLES
+let inDialogue = false;
+let dialogueBox;
+let dialogueClick;
+let font;
+let character = 0;
+let dialogueX = 60;
+let dialogueY = 490;
+let dialogueSize = 25;
+let nameY = 455;
+let nameSize = 30;
+let spacer = 30;
+let goblinDialogue = ["A human?!", "You would make a delectable meal...", "Get him, my goblin brothers!"]
+let knightDialogue = ["Who goes there?", "An intruder!", "Knights, seize him!"];
+let kingDialogue = ["So it is you...", "BEGONE!!!"];
+var dialogueNum = 0;
+let dialogueHasFinished = false;
+
 
 function preload() {
 
@@ -182,6 +200,9 @@ function preload() {
      //goblin Sprites
     goblinSprite1 = loadImage("goblin images/goblin1.png");
     goblinSprite2 = loadImage("goblin images/goblin3.png");
+    
+    dialogueBox = loadImage("assets/dialogueBox.png");
+    dialogueClick = loadImage("assets/dialogueClick.png");
     
 }
 
@@ -276,6 +297,13 @@ function mouseClicked() {
         } else if (gameState === "text") {
             gameState = "play"; // Transition to play state after text finishes scrolling
         } else if (gameState === "play") {
+            if (inDialogue) {
+                if (hasFinished){
+                    character = 0;
+                    dialogueNum++;
+                    dialogue(goblinDialogue[dialogueNum])
+                }
+             }
             
         }
 }
@@ -348,6 +376,7 @@ function drawTextContent() {
 
 function drawGame() {
     background(0);
+    inDialogue = true;
     //draws the first level/stage of the game
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
@@ -356,6 +385,17 @@ function drawGame() {
         }
     }
     player.display();
+
+    if(inDialogue){
+        if (dialogueNum < goblinDialogue.length) {
+            dialogue(goblinDialogue[dialogueNum], "Goblin");
+        }else if (dialogueNum == goblinDialogue.length) {
+            inDialogue = false;
+        }
+    }
+
+    if(inDialogue == false){
+
     player.move();
 
     // Draw dagger if it's visible
@@ -366,9 +406,34 @@ function drawGame() {
 
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
-}
+        }
+    }
 }
 
+function dialogue(string, name) { // shows the inputted string letter by letter inside the dialogue box.
+    inDialogue = true
+    image(dialogueBox, 0, 0, 600, 600);
+    let substring = string.substring(0, character);
+
+
+    fill(255);
+    textFont(customFont);
+    textSize(nameSize);
+    text(name, dialogueX, nameY);
+    textSize(dialogueSize);
+    text(substring, dialogueX, dialogueY, width - spacer*2.5, height); // Ensures the text max width is within the dialogue box
+  
+    character += 0.3; // increases the current character at a slower speed.
+
+    if (substring == string){ 
+        hasFinished = true;
+        image(dialogueClick, 0, 0, 600, 600);
+    }else{
+        hasFinished = false;
+    }
+    
+
+}
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
