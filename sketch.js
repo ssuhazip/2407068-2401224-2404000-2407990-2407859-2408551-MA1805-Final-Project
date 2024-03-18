@@ -387,7 +387,7 @@ class Tile {
     }
 
    debug() {}
-   //use debug or console.log to check code 
+   
  
 }
 
