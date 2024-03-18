@@ -164,7 +164,7 @@ function preload() {
      customFont = loadFont('MinecraftRegular-Bmg3.otf');
  
      // Background image for the text content
-     backgroundImage = loadImage('Scroll Screen Background.png');
+     backgroundImage = loadImage('assets/Scroll Screen Background.png');
      
      // Title screen
      Title = loadImage("assets/Title.png");
@@ -177,7 +177,7 @@ function preload() {
     exitText = loadImage("assets/exitButtonText.png");
  
      // Load dagger image
-     daggerImage = loadImage('dagger.png');
+     daggerImage = loadImage('player images/dagger.png');
 
      //goblin Sprites
     goblinSprite1 = loadImage("goblin images/goblin1.png");
