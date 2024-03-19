@@ -132,6 +132,11 @@ let dialogueHasFinished = false;
 let isDoorOpen = false;
 let isCutscene = true;
 
+//INITIALISE GAME OVER VARIABLES
+let button1Image;
+let button2Image;
+let loseBackgroundImage;
+
 
 //INITIALISE WINPAGE VARIABLES
 let endScrollSpeed = 0.9; 
