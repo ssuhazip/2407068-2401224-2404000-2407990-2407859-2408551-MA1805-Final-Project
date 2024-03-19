@@ -56,6 +56,12 @@ let goblinSprite;
 let goblinSprite1;
 let goblinSprite2;
 
+//INITIALISE CROWN VARIABLES
+let crownSprite;
+let message = "";
+let showRectangle = false;
+let crownTexture;
+
 //INITIALISE TEXT VARIABLES
 let textContent = "Dear Rebels,\n\nAs we stand on the edge of history, poised to reshape the destiny of \n\nour kingdom, I write to you with a heart filled with determination and hope. \n\nThe time has come for us to seize control and usher in a new era of \n\nprosperity under our rightful leadership. To achieve this noble goal, we \n\nmust embark on a journey filled with challenges and trials.\n\n \n\nOur quest is clear: we must acquire the three sacred objects that will \n\nlegitimize our claim to the throne– the Sceptre, the Robe, and the \n\nCrown. These artifacts hold immense power and significance, symbols of \n\nthe authority we seek to wield. Yet, they are not easily obtained. Each is \n\nguarded by formidable obstacles, designed to test our resolve and \n\nworthiness.\n\n \n\nThe Sceptre, a symbol of sovereignty and strength, lies hidden within the \n\ndepths of the deep, dark dungeons of the formidable fortress, protected \n\nby ancient traps and guardians.\n\n \n\nWhilst The Robe, imbued with the wisdom and guidance of our ancestors, \n\nis held a floor above the dungeons, within the main hall. To claim it, we \n\nmust navigate the treacherous maze of the winding corridors of the \n\nfortress, overcoming its barriers and outwitting its elusive protectors.\n\n \n\nFinally, the Crown, the ultimate symbol of royal authority, is safeguarded \n\nwithin the daunting throne room. Protected by the loyal forces of the \n\ncurrent regime, breaching its walls will demand courage, strategy, and \n\nsacrifice.\n\n \n\nKnow that the path ahead will be perilous, and the challenges we face \n\nwill test the very limits of our strength and determination. But as we set \n\nforth on this journey, let us stand united in purpose. Together, we shall \n\ndefy the odds, defy our oppressors, and carve our names into the annals \n\nof history as liberators and kings.\n\n \n\nIgor, Leader of the Rebellion"; // Your text content here
 
@@ -209,6 +215,9 @@ function preload() {
      //goblin Sprites
     goblinSprite1 = loadImage("goblin images/goblin1.png");
     goblinSprite2 = loadImage("goblin images/goblin3.png");
+
+    //crown sprite
+    crownTexture = loadImage('ITEM - CROWN/crown.png');
     
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
@@ -246,6 +255,8 @@ function setup() {
     let y = random((numDown - 3) * tileSize, numDown * tileSize); // Random Y position in the bottom 3 rows
     goblins[enemyCount] = new Goblin(goblinSprite1, x, y, goblinSize, tileRules);
 }
+
+crownSprite = new Crown();
 }
 
 function draw() {
@@ -316,6 +327,17 @@ function mouseClicked() {
             }
 }
 
+function mousePressed() {
+    if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)) {
+      crownSprite.handleClick();
+    }
+  }
+
+  function isInsideTriangle(px, py, x, y, size) {
+    const d = dist(px, py, x, y + size);
+    return px >= x - size && px <= x + size && py >= y && py <= y + size && d <= size;
+  }
+
 function drawStartPage() {
     // Draw the background image for the start screen
     image(startScreenImage, 0, 0, width, height);
@@ -366,6 +388,12 @@ function drawGame() {
     }
     player.display();
     player.move();
+
+    crownSprite.update();
+  crownSprite.display();
+  if (showRectangle) {
+    sprite.displayRectangle();
+  }
 
     // Draw dagger if it's visible
     if (daggerVisible) {
@@ -719,3 +747,44 @@ update() {
         this.sprite = this.sprites[this.currentSpriteIndex];
     }
 }
+
+class Crown {
+    constructor() {
+      this.x = width -200;
+      this.y = 100;
+      this.size = 100;
+      this.angle = 0;
+      this.amplitude = 10;
+      this.frequency = 0.05;
+    }
+  
+    update() {
+      this.y = 200 + sin(this.angle) * this.amplitude;
+      this.angle += this.frequency;
+    }
+  
+    handleClick() {
+      message = "Unbelievable! you have managed to find the mighty Crown!";
+      showRectangle = true;
+    }
+  
+    display() {
+      image(crownTexture, this.x, this.y, this.size, this.size);
+    }
+  
+  
+    displayRectangle() {
+      const rectPadding = 10;
+      const rectX = width / 2 - textWidth(message) / 2 - rectPadding;
+      const rectY = height - 60 - rectPadding;
+      const rectWidth = textWidth(message) + 2 * rectPadding;
+      const rectHeight = 30 + 2 * rectPadding;
+  
+      fill(255);
+      rect(rectX, rectY, rectWidth, rectHeight);
+      fill(0);
+      textSize(14);
+      textAlign(CENTER, CENTER);
+      text(message, width / 2, height - 45);
+    }
+  }

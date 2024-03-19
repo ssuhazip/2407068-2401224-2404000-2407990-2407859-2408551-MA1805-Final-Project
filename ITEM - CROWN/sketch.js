@@ -1,11 +1,11 @@
 let crownSprite;
 let message = "";
 let showRectangle = false;
-let img;
+let crownTexture;
 
 function preload() {
   // 
-  img = loadImage('crown.png');
+  crownTexture = loadImage('crown.png');
 }
 
 function setup() {
@@ -15,8 +15,8 @@ function setup() {
 
 function draw() {
   background(0);
-  sprite.update();
-  sprite.display();
+  crownSprite.update();
+  crownSprite.display();
   if (showRectangle) {
     sprite.displayRectangle();
   }
@@ -43,7 +43,7 @@ class Crown {
   }
 
   display() {
-    image(img, this.x, this.y, this.size, this.size);
+    image(crownTexture, this.x, this.y, this.size, this.size);
   }
 
 
