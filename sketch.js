@@ -132,10 +132,6 @@ let dialogueHasFinished = false;
 let isDoorOpen = false;
 let isCutscene = true;
 
-//INITIALISE GAME OVER VARIABLES
-let button1Image;
-let button2Image;
-let loseBackgroundImage;
 
 //INITIALISE WINPAGE VARIABLES
 let endScrollSpeed = 0.9; 
@@ -253,11 +249,6 @@ function preload() {
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
 
-    // own images for buttons and background
-  loseBackgroundImage = loadImage('gameover/gameover.png');
-  button1Image = loadImage('gameover/playagain.jpeg');
-  button2Image = loadImage('gameover/mainmenu.jpeg');
-
   // Load the custom font
   endCustomFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
   // Load the background image
@@ -306,22 +297,6 @@ for (let enemyCount = 0; enemyCount < numKnights; enemyCount++) {
 }
 
 crownSprite = new Crown();
-
-// background image
-  image(loseBackgroundImage, 0, 0, width, height);
-
-  // button with image
-  let button1 = createImg('playagain.jpeg');
-  button1.position(100, 300);
-  button1.size(150, 150); //  size of button
-  button1.mousePressed(button1Clicked);
-
-  // button with image
-  let button2 = createImg('mainmenu.jpeg');
-  button2.position(380, 300);
-  button2.size(150, 150); //  size of button
-  button2.mousePressed(button2Clicked);
-}
 
   // Set the custom font
   textFont(endCustomFont);
