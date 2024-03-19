@@ -138,65 +138,124 @@ let textFullyScrolled = false;
 
 
 function preload() {
-
-    textures[0] = loadImage("assets/path/path_1a.png");
-    textures[1] = loadImage("assets/path/path_1b.png");
-    textures[2] = loadImage("assets/path/path_1c.png");
-    textures[3] = loadImage("assets/path/path_1d.png");
-
-    textures[4] = loadImage("assets/path/path_2a.png");
-    textures[5] = loadImage("assets/path/path_2b.png");
-    textures[6] = loadImage("assets/path/path_2c.png");
-    textures[7] = loadImage("assets/path/path_2d.png");
-
-    textures[8] = loadImage("assets/path/path_3a.png");
-    textures[9] = loadImage("assets/path/path_3b.png");
-    textures[10] = loadImage("assets/path/path_3c.png");
-    textures[11] = loadImage("assets/path/path_3d.png");
-
-    textures[12] = loadImage("assets/path/path_4a.png");
-    textures[13] = loadImage("assets/path/path_4b.png");
-    textures[14] = loadImage("assets/path/path_4c.png");
-    textures[15] = loadImage("assets/path/path_4d.png");
-
-    textures[16] = loadImage("assets/wall/wall_1a.png");
-    textures[17] = loadImage("assets/wall/wall_1b.png");
-    textures[18] = loadImage("assets/wall/wall_1c.png");
-    textures[19] = loadImage("assets/wall/wall_2a.png");
-    textures[20] = loadImage("assets/wall/wall_2b.png");
-    textures[21] = loadImage("assets/wall/wall_2c.png");
-    textures[22] = loadImage("assets/wall/wall_3a.png");
-    textures[23] = loadImage("assets/wall/wall_3c.png");
-    textures[24] = loadImage("assets/wall/wall_4a.png");
-    textures[25] = loadImage("assets/wall/wall_4b.png");
-    textures[26] = loadImage("assets/wall/wall_4c.png");
-    textures[27] = loadImage("assets/wall/wall_4d.png");
-    textures[28] = loadImage("assets/wall/wall_5a.png");
-    textures[29] = loadImage("assets/wall/wall_5b.png");
-
-    textures[30] = loadImage("assets/wall/wall_3c_barrel.png");
-    textures[31] = loadImage("assets/wall/wall_3a_barrel.png");
-    textures[32] = loadImage("assets/wall/wall_3a_skull.png");
-    textures[33] = loadImage("assets/wall/wall_door_1a.png");
-    textures[34] = loadImage("assets/wall/wall_door_1b.png");
-    textures[35] = loadImage("assets/wall/wall_door_2a.png");
-    textures[36] = loadImage("assets/wall/wall_door_2b.png");
-    textures[37] = loadImage("assets/path/path_barrel.png");
-    textures[38] = loadImage("assets/path/path_skull.png");
+    // DUNGEON TEXTURES
+    // FIRST ROW OF PATH TEXTURES (relative to texture sample)
+    textures[0] = loadImage("assets/dungeon/path/path_1a.png");
+    textures[1] = loadImage("assets/dungeon/path/path_1b.png");
+    textures[2] = loadImage("assets/dungeon/path/path_1c.png");
+    textures[3] = loadImage("assets/dungeon/path/path_1d.png");
+    // SECOND ROW OF PATH TEXTURES
+    textures[4] = loadImage("assets/dungeon/path/path_2a.png");
+    textures[5] = loadImage("assets/dungeon/path/path_2b.png");
+    textures[6] = loadImage("assets/dungeon/path/path_2c.png");
+    textures[7] = loadImage("assets/dungeon/path/path_2d.png");
+    // THIRD ROW OF PATH TEXTURES
+    textures[8] = loadImage("assets/dungeon/path/path_3a.png");
+    textures[9] = loadImage("assets/dungeon/path/path_3b.png");
+    textures[10] = loadImage("assets/dungeon/path/path_3c.png");
+    textures[11] = loadImage("assets/dungeon/path/path_3d.png");
+    // FOURTH ROW OF PATH TEXTURES
+    textures[12] = loadImage("assets/dungeon/path/path_4a.png");
+    textures[13] = loadImage("assets/dungeon/path/path_4b.png");
+    textures[14] = loadImage("assets/dungeon/path/path_4c.png");
+    textures[15] = loadImage("assets/dungeon/path/path_4d.png");
     
-    textures[39] = loadImage("assets/wall/wall_1b_banner.png");
-    textures[40] = loadImage("assets/wall/wall_2b_banner.png");
-    textures[41] = loadImage("assets/path/path_skull_bones.png");
-    textures[42] = loadImage("assets/path/path_bones.png");
+    // WALL TEXTURES
+    // FIRST ROW OF WALL TEXTURES
+    textures[16] = loadImage("assets/dungeon/wall/wall_1a.png");
+    textures[17] = loadImage("assets/dungeon/wall/wall_1b.png");
+    textures[18] = loadImage("assets/dungeon/wall/wall_1c.png");
+    // SECOND ROW OF WALL TEXTURES
+    textures[19] = loadImage("assets/dungeon/wall/wall_2a.png");
+    textures[20] = loadImage("assets/dungeon/wall/wall_2b.png");
+    textures[21] = loadImage("assets/dungeon/wall/wall_2c.png");
+    // THIRD ROW OF WALL TEXTURES
+    textures[22] = loadImage("assets/dungeon/wall/wall_3a.png");
+    textures[23] = loadImage("assets/dungeon/wall/wall_3c.png");
+    // FOURTH ROW OF WALL TEXTURES
+    textures[24] = loadImage("assets/dungeon/wall/wall_4a.png");
+    textures[25] = loadImage("assets/dungeon/wall/wall_4b.png");
+    textures[26] = loadImage("assets/dungeon/wall/wall_4c.png");
+    textures[27] = loadImage("assets/dungeon/wall/wall_4d.png");
+    // FIFTH ROW OF WALL TEXTURES
+    textures[28] = loadImage("assets/dungeon/wall/wall_5a.png");
+    textures[29] = loadImage("assets/dungeon/wall/wall_5b.png");
+    // SPECIAL WALL TEXTURES (barrel, skull, door)
+    textures[30] = loadImage("assets/dungeon/wall/wall_3c_barrel.png");
+    textures[31] = loadImage("assets/dungeon/wall/wall_3a_barrel.png");
+    textures[32] = loadImage("assets/dungeon/wall/wall_3a_skull.png");
+    textures[33] = loadImage("assets/dungeon/wall/wall_door_1a.png");
+    textures[34] = loadImage("assets/dungeon/wall/wall_door_1b.png");
+    textures[35] = loadImage("assets/dungeon/wall/wall_door_2a.png");
+    textures[36] = loadImage("assets/dungeon/wall/wall_door_2b.png");
 
-    textures[43] = loadImage("assets/wall/wall_door_1a_open.png");
-    textures[44] = loadImage("assets/wall/wall_door_1b_open.png");
-    textures[45] = loadImage("assets/wall/wall_door_2a_open.png");
-    textures[46] = loadImage("assets/wall/wall_door_2b_open.png");
-    textures[47] = loadImage("assets/path/path_door_2a_closed.png");
-    textures[48] = loadImage("assets/path/path_door_2b_closed.png");
-    textures[49] = loadImage("assets/path/path_door_2a_open.png");
-    textures[50] = loadImage("assets/path/path_door_2b_open.png");
+    // SPECIAL PATH TEXTURES (barrel, skull, bones)
+    textures[37] = loadImage("assets/dungeon/path/path_barrel.png");
+    textures[38] = loadImage("assets/dungeon/path/path_skull.png");
+    textures[39] = loadImage("assets/dungeon/wall/wall_1b_banner.png");
+    textures[40] = loadImage("assets/dungeon/wall/wall_2b_banner.png");
+    textures[41] = loadImage("assets/dungeon/path/path_skull_bones.png");
+    textures[42] = loadImage("assets/dungeon/path/path_bones.png");
+
+    textures[43] = loadImage("assets/dungeon/wall/wall_door_1a_open.png");
+    textures[44] = loadImage("assets/dungeon/wall/wall_door_1b_open.png");
+    textures[45] = loadImage("assets/dungeon/wall/wall_door_2a_open.png");
+    textures[46] = loadImage("assets/dungeon/wall/wall_door_2b_open.png");
+    textures[47] = loadImage("assets/dungeon/path/path_door_2a_closed.png");
+    textures[48] = loadImage("assets/dungeon/path/path_door_2b_closed.png");
+    textures[49] = loadImage("assets/dungeon/path/path_door_2a_open.png");
+    textures[50] = loadImage("assets/dungeon/path/path_door_2b_open.png");
+
+    // BANQUET HALL / HALLWAY TEXTURES 
+    // FLOOR TEXTURES
+    // FIRST ROW OF FLOOR TEXTURES  :: (relative to texture sample)
+    textures[51] = loadImage("assets/banquet/floor/wood_floor.png");
+    textures[52] = loadImage("assets/banquet/floor/wood_floor_1a.png");
+    textures[53] = loadImage("assets/banquet/floor/wood_floor_1b.png");
+    textures[54] = loadImage("assets/banquet/floor/wood_floor_1c.png");
+    // SECOND ROW OF FLOOR TEXTURES
+    textures[55] = loadImage("assets/banquet/floor/wood_floor_2a.png");
+    textures[56] = loadImage("assets/banquet/floor/wood_floor_2b.png");
+    textures[57] = loadImage("assets/banquet/floor/wood_floor_2c.png");
+    textures[58] = loadImage("assets/banquet/floor/wood_floor_2d.png");
+    textures[59] = loadImage("assets/banquet/floor/wood_floor_2e.png");
+    // THIRD ROW OF FLOOR TEXTURES (floor_2a = floor_3a && floor_2e = floor_3e)
+    textures[60] = loadImage("assets/banquet/floor/wood_floor_3b.png");
+    textures[61] = loadImage("assets/banquet/floor/wood_floor_3c.png");
+    textures[62] = loadImage("assets/banquet/floor/wood_floor_3d.png");
+    // FOURTH ROW OF FLOOR TEXTURES
+    textures[63] = loadImage("assets/banquet/floor/wood_floor_4a.png");
+    textures[64] = loadImage("assets/banquet/floor/wood_floor_4b.png");
+    textures[65] = loadImage("assets/banquet/floor/wood_floor_4c.png");
+    // SPECIAL FLOOR TEXTURES (carpet, corner, exits, wall, window)
+    textures[66] = loadImage("assets/banquet/floor/wood_floor_carpet.png");
+    textures[67] = loadImage("assets/banquet/floor/wood_floor_corner_a.png");
+    textures[68] = loadImage("assets/banquet/floor/wood_floor_corner_b.png");
+    textures[69] = loadImage("assets/banquet/floor/wood_floor_exit_down.png");
+    textures[70] = loadImage("assets/banquet/floor/wood_floor_exit_left.png");
+    textures[71] = loadImage("assets/banquet/floor/wood_floor_exit_right.png");
+    textures[72] = loadImage("assets/banquet/floor/wood_floor_wall_a.png");
+    textures[73] = loadImage("assets/banquet/floor/wood_floor_wall_b.png");
+    textures[74] = loadImage("assets/banquet/floor/wood_floor_wall.png");
+    textures[75] = loadImage("assets/banquet/floor/wood_floor_window_a.png");
+    textures[76] = loadImage("assets/banquet/floor/wood_floor_window_b.png");
+    
+    // BANQUET HALL / HALLWAY WALL TEXTURES
+    // FIRST ROW OF WALL TEXTURES
+    textures[77] = loadImage("assets/banquet/wall/banquet_wall.png");
+    textures[78] = loadImage("assets/banquet/wall/banquet_wall_corner_a.png");
+    textures[79] = loadImage("assets/banquet/wall/banquet_wall_corner_b.png");
+    textures[80] = loadImage("assets/banquet/wall/banquet_wall_door_1a.png");
+    textures[81] = loadImage("assets/banquet/wall/banquet_wall_door_1b.png");
+    textures[82] = loadImage("assets/banquet/wall/banquet_wall_door_2a.png");
+    textures[83] = loadImage("assets/banquet/wall/banquet_wall_door_2b.png");
+    textures[84] = loadImage("assets/banquet/wall/banquet_wall_door_open_1a.png");
+    textures[85] = loadImage("assets/banquet/wall/banquet_wall_door_open_1b.png");
+    textures[86] = loadImage("assets/banquet/wall/banquet_wall_door_open_2a.png");
+    textures[87] = loadImage("assets/banquet/wall/banquet_wall_door_open_2b.png");
+    textures[88] = loadImage("assets/banquet/wall/banquet_wall_window_a.png");
+    textures[89] = loadImage("assets/banquet/wall/banquet_wall_window_b.png");
+
 
     //player sprite
     playerSprite = loadImage("player images/player.png");
