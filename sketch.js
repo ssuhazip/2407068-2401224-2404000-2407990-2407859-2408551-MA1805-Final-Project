@@ -328,8 +328,8 @@ function mouseClicked() {
 }
 
 function mousePressed() {
-    if (isInsideTriangle(mouseX, mouseY, sprite.x, sprite.y, sprite.size)) {
-      sprite.handleClick();
+    if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)) {
+      crownSprite.handleClick();
     }
   }
 
