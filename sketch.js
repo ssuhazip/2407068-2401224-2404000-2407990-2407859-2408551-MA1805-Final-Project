@@ -287,6 +287,16 @@ for (let enemyCount = 0; enemyCount < numKnights; enemyCount++) {
 }
 
 crownSprite = new Crown();
+
+  // Set the custom font
+  textFont(endCustomFont);
+
+  // Calculate the total height of the text content
+  let textHeight = textAscent() + textDescent() + textLeading();
+  let fullTextHeight = textContent.split('\n').length * textHeight;
+
+  // Set the initial scroll position to show the full text at the bottom
+  endScrollPos = fullTextHeight - height;
 }
 
 function draw() {
