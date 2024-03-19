@@ -232,6 +232,7 @@ function preload() {
     
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
+
 }
 
 function setup() {
