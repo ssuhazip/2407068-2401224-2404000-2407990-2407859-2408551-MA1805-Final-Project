@@ -233,6 +233,13 @@ function preload() {
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
 
+    // Load the custom font
+  endCustomFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
+  // Load the background image
+  endBackgroundImage = loadImage('throne room.png');
+  // Load the popup image
+  popupImage = loadImage('You Won!.png');
+
 }
 
 function setup() {
