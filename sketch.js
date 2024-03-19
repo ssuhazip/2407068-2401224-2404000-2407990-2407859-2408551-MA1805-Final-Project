@@ -364,7 +364,6 @@ function mouseClicked() {
             gameState = "text"; // Transition to text state
         } 
 
-
         } else if (gameState === "text") {
             gameState = "cutscene"; // Transition to play state after text finishes scrolling
             
