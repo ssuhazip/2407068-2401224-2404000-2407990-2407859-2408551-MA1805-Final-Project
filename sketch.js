@@ -254,6 +254,11 @@ function preload() {
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
 
+    //game over images
+    loseBackgroundImage = loadImage('gameover.png');
+  button1Image = loadImage('playagain.jpeg');
+  button2Image = loadImage('mainmenu.jpeg');
+
   // Load the custom font
   endCustomFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
   // Load the background image
