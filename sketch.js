@@ -37,9 +37,9 @@ function draw() {
   image(endBackgroundImage, 0, 0, width, height);
 
   // Draw the text at the current scroll position
-  let yPos = -scrollPos;
+  let yPos = -endScrollPos;
   fill(255);
-  text(textContent, 50, yPos);
+  text(endTextContent, 50, yPos);
 
   // Update scroll position
   endScrollPos += endScrollSpeed;
