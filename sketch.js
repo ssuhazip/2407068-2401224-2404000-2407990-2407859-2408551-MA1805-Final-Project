@@ -311,7 +311,9 @@ function draw() {
         drawGame();
     } else if (gameState === "cutscene") {
         drawCutscene();
-}
+    } else if (gameState === "win") {
+        drawEndScrollPage();
+    }
 }
 
 function keyPressed() {
@@ -347,6 +349,7 @@ function mouseClicked() {
         daggerVisible = !daggerVisible;
     }
 
+
     if (gameState === "start") {
         if(inPlayButton){
             gameState = "text"; // Transition to text state
@@ -364,8 +367,15 @@ function mouseClicked() {
                     dialogue(goblinDialogue[dialogueNum])
                 }
              }
-            }
-}
+        } else if (gameState === "cutscene") {
+            gameState = "win";
+        }
+        if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)){
+            gameState = "win";
+
+          }
+        }
+
 
 function drawStartPage() {
     // Draw the background image for the start screen
@@ -594,7 +604,8 @@ function drawEndScrollPage() {
     // Draw the text at the current scroll position
     let yPos = -endScrollPos;
     fill(255);
-    text(endTextContent, 50, yPos);
+    textSize(16);
+    text(endTextContent, 40, yPos);
   
     // Update scroll position
     endScrollPos += endScrollSpeed;
@@ -916,24 +927,20 @@ class Crown {
       this.y = 500 + sin(this.angle) * this.amplitude;
       this.angle += this.frequency;
     }
+
+    handleClick() {
+        gameState = "win";
+        drawEndScrollPage();
+        
+      }
   
     display() {
       image(crownTexture, this.x, this.y, this.size, this.size);
     }
   
-  
-    displayRectangle() {
-      const rectPadding = 10;
-      const rectX = width / 2 - textWidth(message) / 2 - rectPadding;
-      const rectY = height - 60 - rectPadding;
-      const rectWidth = textWidth(message) + 2 * rectPadding;
-      const rectHeight = 30 + 2 * rectPadding;
-  
-      fill(255);
-      rect(rectX, rectY, rectWidth, rectHeight);
-      fill(0);
-      textSize(14);
-      textAlign(CENTER, CENTER);
-      text(message, width / 2, height - 45);
-    }
+  }
+
+  function isInsideTriangle(px, py, x, y, size) {
+    const d = dist(px, py, x, y + size);
+    return px >= x - size && px <= x + size && py >= y && py <= y + size && d <= size;
   }
