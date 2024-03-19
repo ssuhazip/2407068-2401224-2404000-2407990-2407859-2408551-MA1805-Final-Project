@@ -48,13 +48,19 @@ let playerSize = tileSize;
 //INITIALISE GOBLIN VARIABLES
 let goblins = [];
 let goblinSize = 30;
-let numGoblins = 3;
+let numGoblins = 2;
+let knights = [];
+let knightSize = 30;
+let numKnights = 2;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
 //sprite variables
 let goblinSprite;
 let goblinSprite1;
 let goblinSprite2;
+let knightSprite;
+let knightSprite1;
+let knightSprite2;
 
 //INITIALISE CROWN VARIABLES
 let crownSprite;
@@ -124,18 +130,6 @@ let dialogueHasFinished = false;
 // CUTSCENE VARIABLES
 let isDoorOpen = false;
 let isCutscene = true;
-
-//INITIALISE ENDSCROLL PAGE VARIABLES
-let endScrollSpeed = 0.9; // Adjust scroll speed as needed
-let endScrollPos = 0;
-let endTextContent = "Dear Rebels,\n\nI write to you today with a heart brimming with pride and gratitude, \n\nfor together, we have achieved the impossible. Our journey, fraught \n\nwith peril and uncertainty, has culminated in a victory that will echo \n\nthrough the annals of history – the overthrow of the tyrant king and \n\nthe dawn of a new era for our kingdom.\n\n\nWith unwavering courage and unwavering determination, we embarked on \n\na quest to reclaim our rightful place on the throne. Through the \n\ntreacherous depths of the Dungeons, the grandeur of the Main Hall, \n\nand the sanctity of the Throne Room, we faced challenges that tested our \n\nresolve and strength. Yet, with unity as our shield and justice as \n\nour sword, we emerged triumphant. \n\n\nAnd now, as I stand before you, I am filled with awe and reverence for \n\nthe courage and sacrifice each of you has displayed. Together, we have \n\nvanquished the darkness that gripped our land, casting aside the shackles \n\nof oppression and ushering in a new era of freedom and prosperity. \n\n\nTogether, we shall build a kingdom where justice reigns supreme, where \n\nevery voice is heard, and where freedom flourishes. And as we \n\nmarch forward into the future, let us never forget the journey \n\nthat brought us here – a journey of courage, sacrifice, and unwavering \n\ndetermination. \n\n\nWith deepest admiration and eternal gratitude, \n\nIgor, Leader of the Rebellion."; 
-
-let endCustomFont;
-let endBackgroundImage;
-let popupImage;
-let scrolledToEnd = false;
-let textFullyScrolled = false;
-
 
 function preload() {
 
@@ -226,20 +220,13 @@ function preload() {
      //goblin Sprites
     goblinSprite1 = loadImage("goblin images/goblin1.png");
     goblinSprite2 = loadImage("goblin images/goblin3.png");
-
+    knightSprite1 = loadImage("knight images/knight 2.png");
+    knightSprite2 = loadImage("knight images/knight 3.png");
     //crown sprite
     crownTexture = loadImage('ITEM - CROWN/crown.png');
     
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
-
-    // Load the custom font
-  endCustomFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
-  // Load the background image
-  endBackgroundImage = loadImage('throne room.png');
-  // Load the popup image
-  popupImage = loadImage('You Won!.png');
-
 }
 
 function setup() {
@@ -272,7 +259,13 @@ function setup() {
   for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
     let x = random(0, width); // Random X position
     let y = random((numDown - 3) * tileSize, numDown * tileSize); // Random Y position in the bottom 3 rows
-    goblins[enemyCount] = new Goblin(goblinSprite1, x, y, goblinSize, tileRules);
+    goblins[enemyCount] = new Enemy(goblinSprite1, x, y, goblinSize, tileRules);
+}
+
+for (let enemyCount = 0; enemyCount < numKnights; enemyCount++) {
+    let x = random(0, width); // Random X position
+    let y = random((numDown - 3) * tileSize, numDown * tileSize); // Random Y position in the bottom 3 rows
+    knights[enemyCount] = new Knight(knightSprite1, x, y, knightSize, tileRules);
 }
 
 crownSprite = new Crown();
@@ -408,8 +401,14 @@ function drawGame() {
     //draws goblins onto to the dungeon level
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
-        }
+        goblins[enemyCount].update();
+    }
 
+    // Draw the knights
+    for (let enemyCount = 0; enemyCount < numKnights; enemyCount++) {
+        knights[enemyCount].display();
+        knights[enemyCount].update();
+    }
         crownSprite.update();
   crownSprite.display();
     }
@@ -695,7 +694,7 @@ display() {
     }
 }
 
-class Goblin {
+class Enemy{
     constructor(sprite, x, y, size, speed) {
         this.sprite = sprite;
         this.sprites = [goblinSprite1, goblinSprite2];
@@ -704,10 +703,11 @@ class Goblin {
         this.y = y;
         this.targetX = 8;
 		this.targetY = 8;
-        this.size = 80, 80;
-        this.speed = 0.6
+        this.size = 100, 100;
+        this.speed = 0.5
         this.direction = 'right';
         this.player = player;
+        this.tileRules = tileRules;
     }
 
     display() {
@@ -720,40 +720,130 @@ class Goblin {
             image(this.sprite, this.x, this.y, this.size, this.size);
         }
         this.update();
+    
 }
 
-update() {
-    let dx = this.player.xPos - this.x;
-    let dy = this.player.yPos - this.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
 
-    // Normalize the direction vector
-    dx /= distance;
-    dy /= distance;
+       update() {
+        let dx = this.player.xPos - this.x;
+        let dy = this.player.yPos - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
+        let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
+        
+        
+        dx /= distance;
+        dy /= distance;
 
-    // Move the goblin towards the player
-    this.x += dx * this.speed;
-    this.y += dy * this.speed;
+        
+        if (
+            nextTileHorizontal >= 0 && // Top of map
+            nextTileHorizontal < numAcross &&
+            nextTileVertical >= 0 &&
+            nextTileVertical < numDown &&
+            tileRules[nextTileVertical][nextTileHorizontal] != 1
+        ) {
+            this.x += dx * this.speed;
+            this.y += dy * this.speed;
+        } else {
+        }
 
-    // Update direction based on movement
-    if (dx > 0) {
-        this.direction = 'right';
-    } else {
-        this.direction = 'left';
+        
+        if (dx > 0) {
+            this.direction = 'right';
+        } else {
+            this.direction = 'left';
+        }
+
+        if(distance < this.size / 2 + this.player.size/2) {
+            this.player.playerDied();
+        }
     }
-
-    // Check for collisions with the player
-    if (distance < this.size / 2 + this.player.size / 2) {
-        // Goblin collides with the player, trigger player death
-        this.player.playerDied();
-    }
-}
 
     switchSprite() {
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
         this.sprite = this.sprites[this.currentSpriteIndex];
     }
 }
+
+class Knight extends Enemy {
+    constructor(sprite, x, y, size, speed) {
+        super(sprite, x, y, size, speed);
+        this.size = 150, 150;
+        this.speed = 0.5
+        this.sprites = [knightSprite1, knightSprite2]; // Add knight sprites
+        this.currentSpriteIndex = 0;
+        this.direction = 'right';
+        this.player = player; 
+        this.lastSpriteChangeTime = 0;
+        this.spriteChangeInterval = 190;
+        this.tileRules = tileRules;
+    }
+
+    display() {
+
+        
+        if (this.direction === 'left') {
+            // Flip horizontally
+            scale(-1, 1);
+            image(this.sprite, -this.x - this.size, this.y, this.size, this.size);
+            scale(-1, 1); 
+        } else {
+            image(this.sprite, this.x, this.y, this.size, this.size);
+        }
+        this.update();
+    }
+
+    update() {
+        let dx = this.player.xPos - this.x;
+        let dy = this.player.yPos - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
+        let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
+
+        
+        dx /= distance;
+        dy /= distance;
+
+        
+        if (
+            nextTileHorizontal >= 0 && // Top of map
+            nextTileHorizontal < numAcross &&
+            nextTileVertical >= 0 &&
+            nextTileVertical < numDown &&
+            tileRules[nextTileVertical][nextTileHorizontal] != 1
+        ) {
+            this.x += dx * this.speed;
+            this.y += dy * this.speed;
+        } else {
+           
+        }
+        
+    
+        
+        if (dx > 0) {
+            this.direction = 'right';
+        } else {
+            this.direction = 'left';
+        }
+         
+        if(distance < this.size / 2 + this.player.size/2) {
+            this.player.playerDied();
+        }
+
+        if (millis() - this.lastSpriteChangeTime > this.spriteChangeInterval) {
+            this.switchSprite();
+            this.lastSpriteChangeTime = millis();
+        }
+    }
+
+    switchSprite() {
+        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
+        this.sprite = this.sprites[this.currentSpriteIndex];
+    }
+  
+}
+
 
 class Crown {
     constructor() {
