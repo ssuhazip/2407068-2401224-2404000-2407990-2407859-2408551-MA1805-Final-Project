@@ -125,6 +125,18 @@ let dialogueHasFinished = false;
 let isDoorOpen = false;
 let isCutscene = true;
 
+//INITIALISE ENDSCROLL PAGE VARIABLES
+let endScrollSpeed = 0.9; // Adjust scroll speed as needed
+let endScrollPos = 0;
+let endTextContent = "Dear Rebels,\n\nI write to you today with a heart brimming with pride and gratitude, \n\nfor together, we have achieved the impossible. Our journey, fraught \n\nwith peril and uncertainty, has culminated in a victory that will echo \n\nthrough the annals of history – the overthrow of the tyrant king and \n\nthe dawn of a new era for our kingdom.\n\n\nWith unwavering courage and unwavering determination, we embarked on \n\na quest to reclaim our rightful place on the throne. Through the \n\ntreacherous depths of the Dungeons, the grandeur of the Main Hall, \n\nand the sanctity of the Throne Room, we faced challenges that tested our \n\nresolve and strength. Yet, with unity as our shield and justice as \n\nour sword, we emerged triumphant. \n\n\nAnd now, as I stand before you, I am filled with awe and reverence for \n\nthe courage and sacrifice each of you has displayed. Together, we have \n\nvanquished the darkness that gripped our land, casting aside the shackles \n\nof oppression and ushering in a new era of freedom and prosperity. \n\n\nTogether, we shall build a kingdom where justice reigns supreme, where \n\nevery voice is heard, and where freedom flourishes. And as we \n\nmarch forward into the future, let us never forget the journey \n\nthat brought us here – a journey of courage, sacrifice, and unwavering \n\ndetermination. \n\n\nWith deepest admiration and eternal gratitude, \n\nIgor, Leader of the Rebellion."; 
+
+let endCustomFont;
+let endBackgroundImage;
+let popupImage;
+let scrolledToEnd = false;
+let textFullyScrolled = false;
+
+
 function preload() {
 
     textures[0] = loadImage("assets/path/path_1a.png");
@@ -220,6 +232,7 @@ function preload() {
     
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
+
 }
 
 function setup() {
