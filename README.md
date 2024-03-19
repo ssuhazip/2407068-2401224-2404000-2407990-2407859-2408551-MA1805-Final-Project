@@ -32,14 +32,20 @@ An issue I was not able to resolve was coding the two next level maps of the gam
 Overall, I enjoyed fixing issues with the main code and organising our folders as it was very satisfying to tidy up and reslove our code to work together for the game. 
 
 **Imogen: Designer for enemy sprites/ Coder for enemy sprites-** 
+For this project I have taken the role of both coding for and making sprites for the enemies. I drew sprites for multiple enemies and coded them so they move and follow the player and cause a game over if they collide. I had created three classes for the three enemies (goblins, knights and the king), and coded an animation loop for the goblins and knights to appear walking.
+
+An issue i struggled with was making the enemies not collide with the wall tiles, which i failed to prevent. Additionally I had to alter the enemies spawn positions so they would not immediately kill the player, which i did sucessfully, restricting their area of spawn to the bottom rows of the map.
+
+Due to the game not having multiple maps, there is only one enemy included in the game (we intended to have different enemies per stage) however the code for the knight and king enemy can be found within my branch (Imogen-File).
+
+Overall i enjoyed getting to draw sprites and animating them for the game, and i found it satisfying when the code was successful. The project has helped me broaden my understanding of javascript.
 
 
 
-
-**Allyssa: Story writer/Coder for player, scroll message screen, tile traps-**
+**Allyssa: Story writer/Coder for player, scroll message screen, tile traps, winning screen-**
 I have taken on the role of creating the narrative of the game where I sort of proposed the basis of the backstory of the entire game, which is essentially the whole idea of a rebellion attempting the overthrow the king. But in order to do this, they must obtain these three objects which are each contained in three different locations within the king's fortress. In order to introduce this narrative to the players of the game, I have created a scroll which will be presented right before the player enters the first level of the game, and it contains a message from the leader of this rebellion group, explaining to the player the main objective of the game and what they'll be facing in order to achieve the goal of overthrowing the king.
 
-I have also contributed to the code so that the player is able to move around the tilemap by pressing the WASD keys, by importing the character design Amelia had made and implementing some of the code learnt from week 17 to achieve this. I have also managed to code it so that whenever the player left clicks, the dagger then pops up on the character. Additionally to this, I have further developed Anna's bones and skulls assets on the map, but adding a few more, as well as coding it so that whenever the player steps on it, it is instant death and game over. I had also coded to basis of the intro screen when Anna and Amelia had not fully developed the game design of the intro screen, and had combined all the intro screen, scroll screen and the game code earlier on in the process. 
+I have also contributed to the code so that the player is able to move around the tilemap by pressing the WASD keys, by importing the character design Amelia had made and implementing some of the code learnt from week 17 to achieve this. I have also managed to code it so that whenever the player left clicks, the dagger then pops up on the character. Additionally to this, I have further developed Anna's bones and skulls assets on the map, but adding a few more, as well as coding it so that whenever the player steps on it, it is instant death and game over. I had also coded to basis of the intro screen when Anna and Amelia had not fully developed the game design of the intro screen, and had combined all the intro screen, scroll screen and the game code earlier on in the process. Lastly, I had also coded the winning screen by again, combining Amelia's and Suha's game desgin/Art Work. 
 
 Overall, I have enjoyed the process of creating the narrative a lot, as well as coding the scoll message page, the moving character, the dagger and the tile traps; as I was able to both develop my coding skills as well as use my passion for fictional storytelling. 
 
