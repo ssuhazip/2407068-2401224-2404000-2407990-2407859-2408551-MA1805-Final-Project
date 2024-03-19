@@ -23,7 +23,7 @@ Each object is essentially a level in the game, once the player manages to obtai
 **Han: Main Coder/ Maps Coder-**
 My role in this project is coding the tilemap, fixing any bugs/issues within the code and, in response to our prototype's feedback, I had organised our folders. I also had the responsibility of managing the GitHub repository and ensuring all group members had access to it. 
 
-The code I have contributed is initialising the tilemap variables alongside the tileRules of the code. I also coded the Tile class. Furthermore, I had helped with merging the player code and some of the goblins code into the sketch.js.
+The code I have contributed is initialising the tilemap variables alongside the tileRules of the code. I also coded the Tile class. Furthermore, I had helped with merging the player code, crown code and some of the goblins code into the sketch.js.
 
 The issues I was able to fix were the positioning of the scrollpage text to be aligned to the centre so it was completely visible; the player was not moving when we first merged the player code and I was able to fix this issue within the keyPressed function. I had also adjusted the tileSize and Canvas size to fix the proportions of the graphic/ images shown. 
 
