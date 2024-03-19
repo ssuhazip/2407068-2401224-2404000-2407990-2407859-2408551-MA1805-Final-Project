@@ -10,7 +10,7 @@ let textFullyScrolled = false;
 
 function preload() {
   // Load the custom font
-  endCustomFont = loadFont('MinecraftRegular-Bmg3.otf');
+  endCustomFont = loadFont('assets/MinecraftRegular-Bmg3.otf');
   // Load the background image
   endBackgroundImage = loadImage('throne room.png');
   // Load the popup image
