@@ -323,6 +323,8 @@ function draw() {
         drawCutscene();
     } else if (gameState === "win") {
         drawEndScrollPage();
+    } else if (gameState === "help") {
+        drawHelpPage();
     }
 }
 
@@ -362,6 +364,12 @@ function mouseClicked() {
         if(inPlayButton){
             gameState = "text"; // Transition to text state
         } 
+        if(inHelpButton){
+            gameState = "help"; // Transition to help state
+        }
+        if(inExitButton){
+            window.close();
+        }
 
         } else if (gameState === "text") {
             gameState = "cutscene"; // Transition to play state after text finishes scrolling
@@ -616,6 +624,13 @@ function drawEndScrollPage() {
       endScrollPos = -height;
       textFullyScrolled = false; // Reset the textFullyScrolled flag
     }
+  }
+
+  function drawHelpPage(){
+    // Draw the background image for the start screen
+    image(startScreenImage, 0, 0, width, height);
+
+   
   }
 
 class Tile {
