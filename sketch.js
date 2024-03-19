@@ -7,111 +7,98 @@ const dungeonObject = {
     numAcross: 10,
     numDown: 10,
 
-    //TEXTURE VALUES:
-    //0: grassy; 1: stone; 2: wall; 3: door
-
     graphicMap: [ 
-    //      THIS IS OUR Y AXIS
-    //   0  1  2  3  4  5  6  7  8  9 
-        [0, 0, 0, 0, 0, 0, 0, 2, 3, 2], // 0
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 1
-        [0, 0, 0, 1, 0, 0, 0, 0, 0, 0], // 2
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 3
-        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0], // 4    THIS IS OUR X AXIS
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 5
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], // 6
-        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0], // 7
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 8
-        [0, 1, 1, 0, 0, 0, 0, 0, 0, 1]  // 9
+    
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 1]  
     ],
 
     tileRules: [ 
-    //         THIS IS OUR Y AXIS
-    //   0  1  2  3  4  5  6  7  8  9 
-        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1], // 0
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 1
-        [0, 0, 0, 1, 0, 0, 0, 0, 0, 0], // 2
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 3
-        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0], // 4    THIS IS OUR X AXIS
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 5
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], // 6
-        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0], // 7
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 8
-        [0, 1, 1, 0, 0, 0, 0, 0, 0, 1]  // 9
+       
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 1] 
     ]
 }
 
 const mainHallObject = {
-    numAcross: 5,
+    numAcross: 10,
     numDown: 10,
 
-    //TEXTURE VALUES
-    //0: void; 1: wall; 2: door;
-
-    graphicMap: [
-    //   0  1  2  3  4
-        [1, 1, 2, 1, 1], // 0
-        [1, 0, 0, 0, 1], // 1
-        [1, 0, 0, 0, 1], // 2 
-        [1, 0, 0, 0, 1], // 3
-        [1, 0, 0, 0, 1], // 4
-        [1, 0, 0, 0, 1], // 5
-        [1, 0, 0, 0, 1], // 6
-        [1, 0, 0, 0, 1], // 7
-        [1, 0, 0, 0, 1], // 8
-        [1, 1, 2, 1, 1]  // 9
+    graphicMap: [ 
+    
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]    
     ],
 
-    tileRules: [
-    //   0  1  2  3  4
-        [1, 1, 1, 1, 1], // 0
-        [1, 0, 0, 0, 1], // 1
-        [1, 0, 0, 0, 1], // 2 
-        [1, 0, 0, 0, 1], // 3
-        [1, 0, 0, 0, 1], // 4
-        [1, 0, 0, 0, 1], // 5
-        [1, 0, 0, 0, 1], // 6
-        [1, 0, 0, 0, 1], // 7
-        [1, 0, 0, 0, 1], // 8
-        [1, 1, 1, 1, 1]  // 9
-    ],
+    tileRules: [ 
+       
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  
+    ]
 }
 
 const thrownRoomObject = {
     numAcross: 10,
     numDown: 10,
 
-    //TEXTURE VALUES:
-    //0: void; 1: wall; 2: door;
-
     graphicMap: [ 
-    //      THIS IS OUR Y AXIS
-    //   0  1  2  3  4  5  6  7  8  9 
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // 0
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 1
-        [1, 0, 0, 1, 0, 0, 0, 0, 0, 1], // 2
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 3
-        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1], // 4    THIS IS OUR X AXIS
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 5
-        [1, 0, 0, 0, 0, 0, 0, 1, 0, 1], // 6
-        [1, 0, 1, 0, 0, 0, 0, 0, 0, 1], // 7
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 8
-        [1, 1, 2, 1, 1, 1, 1, 1, 1, 1]  // 9
+    
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] 
     ],
 
     tileRules: [ 
-        //      THIS IS OUR Y AXIS
-    //   0  1  2  3  4  5  6  7  8  9 
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // 0
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 1
-        [1, 0, 0, 1, 0, 0, 0, 0, 0, 1], // 2
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 3
-        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1], // 4    THIS IS OUR X AXIS
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 5
-        [1, 0, 0, 0, 0, 0, 0, 1, 0, 1], // 6
-        [1, 0, 1, 0, 0, 0, 0, 0, 0, 1], // 7
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // 8
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  // 9
+       
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] 
     ]
 }
 
@@ -121,28 +108,28 @@ let levels = {
     thrownRoom: thrownRoomObject,
 }
 
-let transitionEntranceToCorridor = {
+let transitionDungeonToMainHall = {
     linkedLevel: levels.corridor,
-    startingXPos: 2 * tileSize,
-    startingYPos: 8 * tileSize
+    startingXPos: 9* tileSize,
+    startingYPos: 4* tileSize
 }
 
-let transitionCorridorToEntrance = {
+let transitionMainHallToDungeon = {
     linkedLevel: levels.entrance,
-    startingXPos: 8 * tileSize,
-    startingYPos: 1 * tileSize
+    startingXPos: 0 * tileSize,
+    startingYPos: 4 * tileSize
 }
 
-let transitionCorridorToMainHall = {
+let transitionMainHalltoThrownRoom = {
     linkedLevel: levels.mainHall,
-    startingXPos: 2 * tileSize,
-    startingYPos: 8 * tileSize
+    startingXPos: 4 * tileSize,
+    startingYPos: 9 * tileSize
 }
 
-let transitionMainHallToCorridor = {
+let transitionThrownRoomtoMainHall = {
     linkedLevel: levels.corridor,
-    startingXPos: 2 * tileSize,
-    startingYPos: 1 * tileSize
+    startingXPos: 4 * tileSize,
+    startingYPos: 0 * tileSize
 }
 
 function preload() {
@@ -204,26 +191,25 @@ function createTileMap() {
 
 function addTransitionsToTiles() {
     if (currentLevel === entranceObject) {
-        currentLevel.tileRules[0][8] = transitionEntranceToCorridor;
+        currentLevel.tileRules[9][4] = transitionDungeonToMainHall;
     }
 
     if (currentLevel === corridorObject) {
-        currentLevel.tileRules[9][2] = transitionCorridorToEntrance;
-        currentLevel.tileRules[0][2] = transitionCorridorToMainHall;
+        currentLevel.tileRules[0][4] = transitionMainHallToDungeon;
+        currentLevel.tileRules[4][9] = transitionMainHallToThrownRoom;
     }
 
     if (currentLevel === mainHallObject) {
-        currentLevel.tileRules[9][2] = transitionMainHallToCorridor;
+        currentLevel.tileRules[4][0] = transitionThrownRoomToMainHall;
     }
 }
 
 function keyPressed() {
     if (key === 'l') {
-        loadLevel(corridorObject);
+        loadLevel(MainHallObject);
         createTileMap();
     }
     
-    player.setDirection();
 }
 
 class Tile {
