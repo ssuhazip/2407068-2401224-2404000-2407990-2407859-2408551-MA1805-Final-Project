@@ -58,7 +58,9 @@ Theme of Dungeons, Rebellion, Monarchy, etc. We're essentially aiming for a dark
 ## GAME DESIGN: 
 **Level Structures:** The game consists of multiple levels, each representing a different area within the ruler's fortress. One of the levels include the Dungeons, which is where the player will face the task of defeating several enemies and obstacles in order to obtain the sceptre. After successfully getting through this level, the player then moves onto the next level, which would be the main hall, where they would again have to face multiple enemies and obstacles protecting the cape. Once they get to the final level, which is the throne room, they are then not only faced with the enemies and obstacles, they are also faced with the King, who is the ultimate boss of the entire game. 
 
-**Movement/Combat:** The player will be able to use the WASD keys to move the character around; and since they will be engaging in combat with various enemies, they would be able to use a knife by left clicking to aim and deal damage to those attacking them. Players may also deal damage or have instant death by various objects/assets scattered around the map, if they step on it. They player will have around 3 lives, before they end up dying and restarting the game again. 
+**Control Keys/Movement/Combat:** The user will be able to use the cursor to left click on the buttons on the intro screen, then they are also able to use left click or spacebar to skip the scroll screen. 
+
+The player will be able to use the WASD keys to move the character around; and since they will be engaging in combat with various enemies, they would be able to use a knife by left clicking to get the dagger up on the screen, then right clicking to deal damage to those attacking them. If the player also steps on any of the tiles that has the skull and bones on it, it is an instant death.
 
 ## AESTHETIC
 Main aestheitc/atmosphere we are aiming for: 
