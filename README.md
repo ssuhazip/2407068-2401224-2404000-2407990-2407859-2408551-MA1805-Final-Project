@@ -21,10 +21,12 @@ Each object is essentially a level in the game, once the player manages to obtai
 
 ## ROLES & INDIVIDUAL CONTRIBUTIONS
 **Han: Main Coder/ Maps Coder-**
-My role in this project is coding the tilemap, fixing any bugs/issues within the code and, in response to our prototype's feedback, I had organised our folders. I also had the responsibility of managing the GitHub repository and ensuring all group members had access to it. I had initialised the tilemap variables alongside the tileRules of the code. I also coded the Tile class. Furthermore, I had helped with merging the player code and some of the goblins code into the sketch.js.
+My role in this project is coding the tilemap, fixing any bugs/issues within the code and, in response to our prototype's feedback, I had organised our folders. I also had the responsibility of managing the GitHub repository and ensuring all group members had access to it. 
+The codd I have contributed is initialising the tilemap variables alongside the tileRules of the code. I also coded the Tile class. Furthermore, I had helped with merging the player code and some of the goblins code into the sketch.js.
+
 The issues I was able to fix were the positioning of the scrollpage text to be aligned to the centre so it was completely visible; the player was not moving when we first merged the player code and I was able to fix this issue within the keyPressed function. I had also adjusted the tileSize and Canvas size to fix the proportions of the graphic/ images shown. 
 
-Overall, I enjoyed fixing issues with the code and organising our folders as it was very satisfying to tidy up and reslove our code to work.
+Overall, I enjoyed fixing issues with the code and organising our folders as it was very satisfying to tidy up and reslove our code to work. 
 
 **Imogen: Designer for enemy sprites/ Coder for enemy sprites-** 
 
