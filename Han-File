@@ -14,8 +14,8 @@ let tileSize = 60;
 
 let textures = [];
 
-let dungeonObject = {
-let graphicsMap = [
+const dungeonObject = {
+graphicsMap: [
     [16, 17, 39, 17, 33, 34, 17, 17, 17, 18, ],
     [19, 20, 40, 20, 35, 36, 20, 20, 20, 21, ],
     [31, 0, 1, 2, 2, 2, 2, 3, 7, 23, ],
@@ -29,7 +29,7 @@ let graphicsMap = [
     
 ],
 
-let tileRules = [
+tileRules: [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, ],
