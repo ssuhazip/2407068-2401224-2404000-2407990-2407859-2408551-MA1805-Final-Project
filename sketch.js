@@ -4,7 +4,7 @@ let scrollSpeed = 0.9;
 let scrollPos;
 
 let gameState = "start";
-let startScreenImage; // Variable to hold the start screen image
+let startScreenImage; 
 
 //INITIALISE TILEMAP VARIABLES
 let tilemap = [];
@@ -54,7 +54,8 @@ let knightSize = 30;
 let numKnights = 2;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
-//sprite variables
+
+//INITIALISE ENEMY VARIABLES
 let goblinSprite;
 let goblinSprite1;
 let goblinSprite2;
@@ -74,8 +75,8 @@ let customFont;
 let backgroundImage;
 
 //INITIALISE DAGGER VARIABLES
-let daggerImage; // Variable to hold the dagger image
-let daggerVisible = false; // Boolean variable to track 
+let daggerImage; 
+let daggerVisible = false; 
 
 ///INITIALISE BUTTON VARIABLES
 let menuBg;
@@ -83,7 +84,7 @@ let Title;
 
 // GENERIC BUTTON VARIABLES
 let buttonY = 420;
-let buttonCentre = 55; // distance from the edge to the centre of the button
+let buttonCentre = 55; 
 let buttonSizeX = 575;
 let buttonSizeY = 575;
 
@@ -97,7 +98,7 @@ let inPlayButton = false;
 
 // HELP BUTTON VARIABLES
 let helpText;
-let helpButton; // use same logic for these buttons but diff X and Y
+let helpButton; 
 let helpButtonX = 235;
 let helpButtonDistance;
 let inHelpButton = false;
@@ -132,7 +133,7 @@ let isDoorOpen = false;
 let isCutscene = true;
 
 //INITIALISE WINPAGE VARIABLES
-let endScrollSpeed = 0.9; // Adjust scroll speed as needed
+let endScrollSpeed = 0.9; 
 let endScrollPos = 0;
 let endTextContent = "Dear Rebels,\n\nI write to you today with a heart brimming with pride and gratitude, \n\nfor together, we have achieved the impossible. Our journey, fraught \n\nwith peril and uncertainty, has culminated in a victory that will echo \n\nthrough the annals of history – the overthrow of the tyrant king and \n\nthe dawn of a new era for our kingdom.\n\n\nWith unwavering courage and unwavering determination, we embarked on \n\na quest to reclaim our rightful place on the throne. Through the \n\ntreacherous depths of the Dungeons, the grandeur of the Main Hall, \n\nand the sanctity of the Throne Room, we faced challenges that tested our \n\nresolve and strength. Yet, with unity as our shield and justice as \n\nour sword, we emerged triumphant. \n\n\nAnd now, as I stand before you, I am filled with awe and reverence for \n\nthe courage and sacrifice each of you has displayed. Together, we have \n\nvanquished the darkness that gripped our land, casting aside the shackles \n\nof oppression and ushering in a new era of freedom and prosperity. \n\n\nTogether, we shall build a kingdom where justice reigns supreme, where \n\nevery voice is heard, and where freedom flourishes. And as we \n\nmarch forward into the future, let us never forget the journey \n\nthat brought us here – a journey of courage, sacrifice, and unwavering \n\ndetermination. \n\n\nWith deepest admiration and eternal gratitude, \n\nIgor, Leader of the Rebellion."; 
 
@@ -210,7 +211,6 @@ function preload() {
     textures[48] = loadImage("assets/dungeon/path/path_door_2b_closed.png");
     textures[49] = loadImage("assets/dungeon/path/path_door_2a_open.png");
     textures[50] = loadImage("assets/dungeon/path/path_door_2b_open.png");
-
 
     //player sprite
     playerSprite = loadImage("player images/player.png");
@@ -343,7 +343,6 @@ function keyPressed() {
         }
         lastSpriteChangeTime = millis();
     }
-
    
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
@@ -357,7 +356,6 @@ function mouseClicked() {
         // Toggle the visibility of the dagger
         daggerVisible = !daggerVisible;
     }
-
 
     if (gameState === "start") {
         if(inPlayButton){
@@ -383,7 +381,6 @@ function mouseClicked() {
 
           }
         }
-
 
 function drawStartPage() {
     // Draw the background image for the start screen
@@ -436,9 +433,6 @@ function drawGame() {
     player.display();
     player.move();
 
-
-
-    // Draw dagger if it's visible
     if (daggerVisible) {
         // Draw the dagger at the player's position
         image(daggerImage, player.xPos, player.yPos, player.size, player.size);
@@ -503,8 +497,6 @@ function drawGraphicsMap(graphicsMap){
 
             tileID++;
         }
-        
-
     }
 }
 
@@ -524,15 +516,10 @@ function drawOpenDoor() {
         [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
         
     ]
-
     drawGraphicsMap(graphicsMapOpen);
-    
-  
 }
 
 function drawClosedDoor() {
-
-    
     let graphicsMapClosed = [
         [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
         [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
@@ -545,7 +532,6 @@ function drawClosedDoor() {
         [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
         [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
     ]
-
     drawGraphicsMap(graphicsMapClosed);
 }
 
@@ -553,7 +539,6 @@ function dialogue(string, name) { // shows the inputted string letter by letter 
     inDialogue = true
     image(dialogueBox, 0, 0, 600, 600);
     let substring = string.substring(0, character);
-
 
     fill(255);
     textFont(customFont);
@@ -576,7 +561,7 @@ function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, t
     image(buttonType, x, y, buttonSizeX, buttonSizeY);
     
     buttonDistance = dist(x + buttonCentre, y + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-    if (buttonDistance <= 50){ //might want to fine-tune distance value (default 60)    
+    if (buttonDistance <= 50){   
         
         if(buttonType == playButton){
             inPlayButton = true;
@@ -585,13 +570,11 @@ function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, t
             inPlayButton = false;
         }
         
-        
         if(buttonType == helpButton){
             inHelpButton = true;
         }else{
             inHelpButton = false;
         }
-        
         
         if(buttonType == exitButton){
             inExitButton = true;
@@ -600,7 +583,6 @@ function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, t
         }
 
         image(buttonHighlight, x, y, buttonSizeX, buttonSizeY);
-        
     }
     image(buttonText, textX, textY, 90, 50);
 }
@@ -652,8 +634,6 @@ class Tile {
     }
 
    debug() {}
-   //use debug or console.log to check code 
- 
 }
 
 class Player {
@@ -675,8 +655,8 @@ class Player {
         
         this.tx = this.xPos;
         this.ty = this.yPos;
-
     }
+
     setDirection() {
         //sets player controls
         if (!this.isMoving) {
@@ -799,7 +779,6 @@ class Enemy{
     
 }
 
-
        update() {
         let dx = this.player.xPos - this.x;
         let dy = this.player.yPos - this.y;
@@ -807,10 +786,8 @@ class Enemy{
         let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
         let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
         
-        
         dx /= distance;
         dy /= distance;
-
         
         if (
             nextTileHorizontal >= 0 && // Top of map
@@ -824,7 +801,6 @@ class Enemy{
         } else {
         }
 
-        
         if (dx > 0) {
             this.direction = 'right';
         } else {
@@ -847,7 +823,7 @@ class Knight extends Enemy {
         super(sprite, x, y, size, speed);
         this.size = 150, 150;
         this.speed = 0.5
-        this.sprites = [knightSprite1, knightSprite2]; // Add knight sprites
+        this.sprites = [knightSprite1, knightSprite2]; 
         this.currentSpriteIndex = 0;
         this.direction = 'right';
         this.player = player; 
@@ -857,7 +833,6 @@ class Knight extends Enemy {
     }
 
     display() {
-
         
         if (this.direction === 'left') {
             // Flip horizontally
@@ -877,11 +852,9 @@ class Knight extends Enemy {
         let nextTileHorizontal = Math.floor((this.x + dx * this.speed) / tileSize);
         let nextTileVertical = Math.floor((this.y + dy * this.speed) / tileSize);
 
-        
         dx /= distance;
         dy /= distance;
 
-        
         if (
             nextTileHorizontal >= 0 && // Top of map
             nextTileHorizontal < numAcross &&
@@ -894,8 +867,6 @@ class Knight extends Enemy {
         } else {
            
         }
-        
-    
         
         if (dx > 0) {
             this.direction = 'right';
@@ -917,9 +888,7 @@ class Knight extends Enemy {
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
         this.sprite = this.sprites[this.currentSpriteIndex];
     }
-  
 }
-
 
 class Crown {
     constructor() {
@@ -945,7 +914,6 @@ class Crown {
     display() {
       image(crownTexture, this.x, this.y, this.size, this.size);
     }
-  
   }
 
   function isInsideTriangle(px, py, x, y, size) {
