@@ -15,7 +15,7 @@ let textures = [];
 let graphicsMap = [
     [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
     [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
-    [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+    [31, 0, 1, 2, 47, 48, 2, 3, 37, 30, ],
     [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
     [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
     [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
@@ -143,7 +143,6 @@ function preload() {
     textures[14] = loadImage("assets/path/path_4c.png");
     textures[15] = loadImage("assets/path/path_4d.png");
 
-
     textures[16] = loadImage("assets/wall/wall_1a.png");
     textures[17] = loadImage("assets/wall/wall_1b.png");
     textures[18] = loadImage("assets/wall/wall_1c.png");
@@ -169,7 +168,6 @@ function preload() {
     textures[37] = loadImage("assets/path/path_barrel.png");
     textures[38] = loadImage("assets/path/path_skull.png");
     
-
     textures[39] = loadImage("assets/wall/wall_1b_banner.png");
     textures[40] = loadImage("assets/wall/wall_2b_banner.png");
     textures[41] = loadImage("assets/path/path_skull_bones.png");
@@ -179,6 +177,10 @@ function preload() {
     textures[44] = loadImage("assets/wall/wall_door_1b_open.png");
     textures[45] = loadImage("assets/wall/wall_door_2a_open.png");
     textures[46] = loadImage("assets/wall/wall_door_2b_open.png");
+    textures[47] = loadImage("assets/path/path_door_2a_closed.png");
+    textures[48] = loadImage("assets/path/path_door_2b_closed.png");
+    textures[49] = loadImage("assets/path/path_door_2a_open.png");
+    textures[50] = loadImage("assets/path/path_door_2b_open.png");
 
     //player sprite
     playerSprite = loadImage("player images/player.png");
@@ -439,7 +441,7 @@ function drawOpenDoor() {
     let graphicsMapOpen = [
         [16, 17, 39, 17, 43, 44, 17, 39, 17, 18, ],
         [19, 20, 40, 20, 45, 46, 20, 40, 20, 21, ],
-        [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+        [31, 0, 1, 2, 49, 50, 2, 3, 37, 30, ],
         [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
         [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
         [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
@@ -461,7 +463,7 @@ function drawClosedDoor() {
     let graphicsMapClosed = [
         [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
         [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
-        [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+        [31, 0, 1, 2, 47, 48, 2, 3, 37, 30, ],
         [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
         [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
         [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
