@@ -240,13 +240,12 @@ function setup() {
 
     }
 
-    //creates goblin sprites to ramdomly spawn onto the tilemap
-    for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
-        goblins[enemyCount] = new Goblin(goblinSprite1,
-                                        random(0, width),
-                                        random(0, height), 
-                                        goblinSize, tileRules)
-    }
+  //creates goblin sprites to ramdomly spawn onto the tilemap
+  for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
+    let x = random(0, width); // Random X position
+    let y = random((numDown - 3) * tileSize, numDown * tileSize); // Random Y position in the bottom 3 rows
+    goblins[enemyCount] = new Goblin(goblinSprite1, x, y, goblinSize, tileRules);
+}
 }
 
 function draw() {
