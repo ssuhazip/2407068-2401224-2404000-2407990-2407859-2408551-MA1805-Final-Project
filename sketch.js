@@ -1,6 +1,6 @@
 //INITIALISE TITLE SCROLL VARIABLES
 let img;
-let scrollSpeed = 0.5;
+let scrollSpeed = 0.9;
 let scrollPos;
 
 let gameState = "start";
@@ -24,6 +24,7 @@ let graphicsMap = [
     [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
 ]
+
 
 let tileRules = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
@@ -110,12 +111,15 @@ let dialogueSize = 25;
 let nameY = 455;
 let nameSize = 30;
 let spacer = 30;
-let goblinDialogue = ["A human?!", "You would make a delectable meal...", "Get him, my goblin brothers!"]
+let goblinDialogue = [". . . !", "A human?!", "You would make a delectable meal...", "Get him, my goblin brothers!"]
 let knightDialogue = ["Who goes there?", "An intruder!", "Knights, seize him!"];
 let kingDialogue = ["So it is you...", "BEGONE!!!"];
 var dialogueNum = 0;
 let dialogueHasFinished = false;
 
+// CUTSCENE VARIABLES
+let isDoorOpen = false;
+let isCutscene = true;
 
 function preload() {
 
@@ -170,6 +174,11 @@ function preload() {
     textures[40] = loadImage("assets/wall/wall_2b_banner.png");
     textures[41] = loadImage("assets/path/path_skull_bones.png");
     textures[42] = loadImage("assets/path/path_bones.png");
+
+    textures[43] = loadImage("assets/wall/wall_door_1a_open.png");
+    textures[44] = loadImage("assets/wall/wall_door_1b_open.png");
+    textures[45] = loadImage("assets/wall/wall_door_2a_open.png");
+    textures[46] = loadImage("assets/wall/wall_door_2b_open.png");
 
     //player sprite
     playerSprite = loadImage("player images/player.png");
@@ -250,8 +259,9 @@ function draw() {
         drawTextContent();
     } else if (gameState === "play") {
         drawGame();
-    }
-
+    } else if (gameState === "cutscene") {
+        drawCutscene();
+}
 }
 
 function keyPressed() {
@@ -294,8 +304,9 @@ function mouseClicked() {
 
 
         } else if (gameState === "text") {
-            gameState = "play"; // Transition to play state after text finishes scrolling
-        } else if (gameState === "play") {
+            gameState = "cutscene"; // Transition to play state after text finishes scrolling
+            
+        } else if (gameState === "cutscene") {
             if (inDialogue) {
                 if (hasFinished){
                     character = 0;
@@ -303,8 +314,7 @@ function mouseClicked() {
                     dialogue(goblinDialogue[dialogueNum])
                 }
              }
-            
-        }
+            }
 }
 
 function drawStartPage() {
@@ -369,13 +379,12 @@ function drawTextContent() {
 
     // Reset scroll position when it exceeds the total height of the text content
     if (scrollPos < -textHeight) {
-        gameState = "play"; // Transition to play state after text finishes scrolling
+        gameState = "cutscene"; // Transition to play state after text finishes scrolling
     }
 }
 
 function drawGame() {
     background(0);
-    inDialogue = true;
     //draws the first level/stage of the game
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
@@ -384,17 +393,6 @@ function drawGame() {
         }
     }
     player.display();
-
-    if(inDialogue){
-        if (dialogueNum < goblinDialogue.length) {
-            dialogue(goblinDialogue[dialogueNum], "Goblin");
-        }else if (dialogueNum == goblinDialogue.length) {
-            inDialogue = false;
-        }
-    }
-
-    if(inDialogue == false){
-
     player.move();
 
     // Draw dagger if it's visible
@@ -407,6 +405,99 @@ function drawGame() {
         goblins[enemyCount].display();
         }
     }
+
+
+function drawCutscene() {
+    if(isCutscene){
+        inDialogue = false;
+
+        for (let across = 0; across < numAcross; across++) {
+            for (let down = 0; down < numDown; down++) {
+                tilemap[across][down].display();
+                tilemap[across][down].debug();
+            }
+        }
+    
+        setTimeout(drawOpenDoor, 1000);
+    
+        if(isDoorOpen == true){
+            setTimeout(player.display(), 4000);
+            setTimeout(drawClosedDoor, 1000);
+            setTimeout(inDialogue = true, 10000);
+        }
+    
+        if(inDialogue){
+            if (dialogueNum < goblinDialogue.length) {
+                dialogue(goblinDialogue[dialogueNum], "Goblin");
+            }else if (dialogueNum == goblinDialogue.length) {
+                inDialogue = false;
+                isCutscene = false;
+                gameState = "play";
+            }
+        }
+    
+    }
+}
+
+
+function drawGraphicsMap(graphicsMap){
+    let tileID = 0;
+    for (let across = 0; across < numAcross; across++) {
+        tilemap[across] = [];
+        for (let down = 0; down < numDown; down++) {
+           
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+           tilemap[across][down] = new Tile(textures[textureNum], across, down, tileSize, tileID);
+
+            tileID++;
+        }
+        
+
+    }
+}
+
+function drawOpenDoor() {
+    isDoorOpen = true;
+    
+    let graphicsMapOpen = [
+        [16, 17, 39, 17, 43, 44, 17, 39, 17, 18, ],
+        [19, 20, 40, 20, 45, 46, 20, 40, 20, 21, ],
+        [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+        [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
+        [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+        [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
+        [22, 4, 0, 42, 0, 0, 41, 0, 11, 23, ],
+        [31, 37, 0, 0, 41, 0, 0, 0, 7, 23, ],
+        [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
+        [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
+        
+    ]
+
+    drawGraphicsMap(graphicsMapOpen);
+    
+  
+}
+
+function drawClosedDoor() {
+
+    
+    let graphicsMapClosed = [
+        [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
+        [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
+        [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+        [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
+        [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+        [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
+        [22, 4, 0, 42, 0, 0, 41, 0, 11, 23, ],
+        [31, 37, 0, 0, 41, 0, 0, 0, 7, 23, ],
+        [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
+        [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
+    ]
+
+    drawGraphicsMap(graphicsMapClosed);
+    
+  
 }
 
 function dialogue(string, name) { // shows the inputted string letter by letter inside the dialogue box.
@@ -560,7 +651,6 @@ display() {
     image(this.sprite, this.xPos, this.yPos, this.size, this.size);
     }
 }
-
 
 class Goblin {
     constructor(sprite, x, y, size, speed) {
