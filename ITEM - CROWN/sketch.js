@@ -1,4 +1,4 @@
-let sprite;
+let crownSprite;
 let message = "";
 let showRectangle = false;
 let img;
@@ -10,7 +10,7 @@ function preload() {
 
 function setup() {
   createCanvas(500, 500);
-  sprite = new Sprite();
+  crownSprite = new Crown();
 }
 
 function draw() {
@@ -22,7 +22,7 @@ function draw() {
   }
 }
 
-class Sprite {
+class Crown {
   constructor() {
     this.x = width -200;
     this.y = 100;
