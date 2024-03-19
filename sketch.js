@@ -587,6 +587,35 @@ function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, t
     image(buttonText, textX, textY, 90, 50);
 }
 
+function drawEndScrollPage() {
+    // Draw the background image
+    image(endBackgroundImage, 0, 0, width, height);
+  
+    // Draw the text at the current scroll position
+    let yPos = -endScrollPos;
+    fill(255);
+    text(endTextContent, 50, yPos);
+  
+    // Update scroll position
+    endScrollPos += endScrollSpeed;
+  
+    // Check if all text is scrolled off the screen
+    if (endScrollPos >= 0 && !textFullyScrolled) {
+      textFullyScrolled = true;
+    }
+  
+    // If all text is scrolled off the screen, display the popup image
+    if (textFullyScrolled) {
+      image(popupImage, 0, 0, width, height);
+    }
+  
+    // Reset scroll position when it exceeds the total height of the text content
+    if (endScrollPos > endTextContent.split('\n').length * textSize()) {
+      endScrollPos = -height;
+      textFullyScrolled = false; // Reset the textFullyScrolled flag
+    }
+  }
+
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
         this.texture = texture;
