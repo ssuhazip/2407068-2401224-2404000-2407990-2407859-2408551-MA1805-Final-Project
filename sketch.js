@@ -1,6 +1,6 @@
 //INITIALISE TITLE SCROLL VARIABLES
 let img;
-let scrollSpeed = 0.5;
+let scrollSpeed = 0.9;
 let scrollPos;
 
 let gameState = "start";
@@ -15,7 +15,7 @@ let textures = [];
 let graphicsMap = [
     [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
     [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
-    [31, 0, 1, 2, 2, 2, 2, 3, 37, 30, ],
+    [31, 0, 1, 2, 47, 48, 2, 3, 37, 30, ],
     [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
     [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
     [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
@@ -24,6 +24,7 @@ let graphicsMap = [
     [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
 ]
+
 
 let tileRules = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
@@ -80,14 +81,14 @@ let buttonSizeY = 575;
 let playText;
 let playButton;
 let buttonHighlight;
-let playButtonX = 40; 
+let playButtonX = 45; 
 let playButtonDistance; 
 let inPlayButton = false; 
 
 // HELP BUTTON VARIABLES
 let helpText;
 let helpButton; // use same logic for these buttons but diff X and Y
-let helpButtonX = 230;
+let helpButtonX = 235;
 let helpButtonDistance;
 let inHelpButton = false;
 
@@ -110,12 +111,15 @@ let dialogueSize = 25;
 let nameY = 455;
 let nameSize = 30;
 let spacer = 30;
-let goblinDialogue = ["A human?!", "You would make a delectable meal...", "Get him, my goblin brothers!"]
+let goblinDialogue = [". . . !", "A human?!", "You would make a delectable meal...", "Get him, my goblin brothers!"]
 let knightDialogue = ["Who goes there?", "An intruder!", "Knights, seize him!"];
 let kingDialogue = ["So it is you...", "BEGONE!!!"];
 var dialogueNum = 0;
 let dialogueHasFinished = false;
 
+// CUTSCENE VARIABLES
+let isDoorOpen = false;
+let isCutscene = true;
 
 function preload() {
 
@@ -138,7 +142,6 @@ function preload() {
     textures[13] = loadImage("assets/path/path_4b.png");
     textures[14] = loadImage("assets/path/path_4c.png");
     textures[15] = loadImage("assets/path/path_4d.png");
-
 
     textures[16] = loadImage("assets/wall/wall_1a.png");
     textures[17] = loadImage("assets/wall/wall_1b.png");
@@ -165,11 +168,19 @@ function preload() {
     textures[37] = loadImage("assets/path/path_barrel.png");
     textures[38] = loadImage("assets/path/path_skull.png");
     
-
     textures[39] = loadImage("assets/wall/wall_1b_banner.png");
     textures[40] = loadImage("assets/wall/wall_2b_banner.png");
     textures[41] = loadImage("assets/path/path_skull_bones.png");
     textures[42] = loadImage("assets/path/path_bones.png");
+
+    textures[43] = loadImage("assets/wall/wall_door_1a_open.png");
+    textures[44] = loadImage("assets/wall/wall_door_1b_open.png");
+    textures[45] = loadImage("assets/wall/wall_door_2a_open.png");
+    textures[46] = loadImage("assets/wall/wall_door_2b_open.png");
+    textures[47] = loadImage("assets/path/path_door_2a_closed.png");
+    textures[48] = loadImage("assets/path/path_door_2b_closed.png");
+    textures[49] = loadImage("assets/path/path_door_2a_open.png");
+    textures[50] = loadImage("assets/path/path_door_2b_open.png");
 
     //player sprite
     playerSprite = loadImage("player images/player.png");
@@ -250,8 +261,9 @@ function draw() {
         drawTextContent();
     } else if (gameState === "play") {
         drawGame();
-    }
-
+    } else if (gameState === "cutscene") {
+        drawCutscene();
+}
 }
 
 function keyPressed() {
@@ -294,8 +306,9 @@ function mouseClicked() {
 
 
         } else if (gameState === "text") {
-            gameState = "play"; // Transition to play state after text finishes scrolling
-        } else if (gameState === "play") {
+            gameState = "cutscene"; // Transition to play state after text finishes scrolling
+            
+        } else if (gameState === "cutscene") {
             if (inDialogue) {
                 if (hasFinished){
                     character = 0;
@@ -303,8 +316,7 @@ function mouseClicked() {
                     dialogue(goblinDialogue[dialogueNum])
                 }
              }
-            
-        }
+            }
 }
 
 function drawStartPage() {
@@ -314,36 +326,12 @@ function drawStartPage() {
     // Set text properties
     image(Title, 70, 20, 500, 200);
         // PLAY BUTTON
-        image(playButton, playButtonX,buttonY, buttonSizeX, buttonSizeY);
-        image(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
-        image(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
+        displayButton(playButton, playButtonX, buttonY, buttonSizeX, buttonSizeY, playText, playButtonX + 25, buttonY + 40, buttonHighlight, inPlayButton);
+        displayButton(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY, helpText, helpButtonX + 25, buttonY + 40, buttonHighlight, inHelpButton);
+        displayButton(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY, exitText, exitButtonX + 25, buttonY + 40, buttonHighlight, inExitButton);
     
-        playButtonDistance = dist(playButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (playButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inPlayButton = true;
-            image(buttonHighlight, playButtonX, buttonY, buttonSizeX, buttonSizeY);
         
-        }else {
-            inPlayButton = false;
-        }
-        image(playText, playButtonX + 25, buttonY + 40, 90, 50);
 
-        // HELP BUTTON
-        helpButtonDistance = dist(helpButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (helpButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inHelpButton = true;
-            image(buttonHighlight, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
-        }
-        
-        exitButtonDistance = dist(exitButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (exitButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inExitButton = true;
-            image(buttonHighlight, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
-
-        }
-        image(helpText, helpButtonX + 25, buttonY + 40, 90, 50);
-        // EXIT BUTTON
-        image(exitText, exitButtonX + 25, buttonY + 40, 90, 50);
 }
 
 function drawTextContent() {
@@ -369,13 +357,12 @@ function drawTextContent() {
 
     // Reset scroll position when it exceeds the total height of the text content
     if (scrollPos < -textHeight) {
-        gameState = "play"; // Transition to play state after text finishes scrolling
+        gameState = "cutscene"; // Transition to play state after text finishes scrolling
     }
 }
 
 function drawGame() {
     background(0);
-    inDialogue = true;
     //draws the first level/stage of the game
     for (let across = 0; across < numAcross; across++) {
         for (let down = 0; down < numDown; down++) {
@@ -384,17 +371,6 @@ function drawGame() {
         }
     }
     player.display();
-
-    if(inDialogue){
-        if (dialogueNum < goblinDialogue.length) {
-            dialogue(goblinDialogue[dialogueNum], "Goblin");
-        }else if (dialogueNum == goblinDialogue.length) {
-            inDialogue = false;
-        }
-    }
-
-    if(inDialogue == false){
-
     player.move();
 
     // Draw dagger if it's visible
@@ -407,6 +383,99 @@ function drawGame() {
         goblins[enemyCount].display();
         }
     }
+
+
+function drawCutscene() {
+    if(isCutscene){
+        inDialogue = false;
+
+        for (let across = 0; across < numAcross; across++) {
+            for (let down = 0; down < numDown; down++) {
+                tilemap[across][down].display();
+                tilemap[across][down].debug();
+            }
+        }
+    
+        setTimeout(drawOpenDoor, 1000);
+    
+        if(isDoorOpen == true){
+            setTimeout(player.display(), 4000);
+            setTimeout(drawClosedDoor, 1000);
+            setTimeout(inDialogue = true, 10000);
+        }
+    
+        if(inDialogue){
+            if (dialogueNum < goblinDialogue.length) {
+                dialogue(goblinDialogue[dialogueNum], "Goblin");
+            }else if (dialogueNum == goblinDialogue.length) {
+                inDialogue = false;
+                isCutscene = false;
+                gameState = "play";
+            }
+        }
+    
+    }
+}
+
+
+function drawGraphicsMap(graphicsMap){
+    let tileID = 0;
+    for (let across = 0; across < numAcross; across++) {
+        tilemap[across] = [];
+        for (let down = 0; down < numDown; down++) {
+           
+            let textureNum;
+           textureNum = graphicsMap[down][across];
+           tilemap[across][down] = new Tile(textures[textureNum], across, down, tileSize, tileID);
+
+            tileID++;
+        }
+        
+
+    }
+}
+
+function drawOpenDoor() {
+    isDoorOpen = true;
+    
+    let graphicsMapOpen = [
+        [16, 17, 39, 17, 43, 44, 17, 39, 17, 18, ],
+        [19, 20, 40, 20, 45, 46, 20, 40, 20, 21, ],
+        [31, 0, 1, 2, 49, 50, 2, 3, 37, 30, ],
+        [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
+        [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+        [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
+        [22, 4, 0, 42, 0, 0, 41, 0, 11, 23, ],
+        [31, 37, 0, 0, 41, 0, 0, 0, 7, 23, ],
+        [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
+        [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
+        
+    ]
+
+    drawGraphicsMap(graphicsMapOpen);
+    
+  
+}
+
+function drawClosedDoor() {
+
+    
+    let graphicsMapClosed = [
+        [16, 17, 39, 17, 33, 34, 17, 39, 17, 18, ],
+        [19, 20, 40, 20, 35, 36, 20, 40, 20, 21, ],
+        [31, 0, 1, 2, 47, 48, 2, 3, 37, 30, ],
+        [31, 37, 0, 42, 0, 0, 0, 42, 7, 23, ],
+        [32, 42, 0, 0, 0, 0, 0, 2, 41, 23, ],
+        [22, 4, 0, 0, 0, 42, 42, 0, 7, 30, ],
+        [22, 4, 0, 42, 0, 0, 41, 0, 11, 23, ],
+        [31, 37, 0, 0, 41, 0, 0, 0, 7, 23, ],
+        [31, 12, 42, 41, 0, 0, 0, 0, 41, 30, ],
+        [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
+    ]
+
+    drawGraphicsMap(graphicsMapClosed);
+    
+  
 }
 
 function dialogue(string, name) { // shows the inputted string letter by letter inside the dialogue box.
@@ -433,6 +502,42 @@ function dialogue(string, name) { // shows the inputted string letter by letter 
     
 
 }
+
+function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, textX, textY, buttonHighlight, inButton) {
+    image(buttonType, x, y, buttonSizeX, buttonSizeY);
+    
+    buttonDistance = dist(x + buttonCentre, y + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+    if (buttonDistance <= 50){ //might want to fine-tune distance value (default 60)    
+        
+        if(buttonType == playButton){
+            inPlayButton = true;
+            
+        }else{
+            inPlayButton = false;
+        }
+        
+        
+        if(buttonType == helpButton){
+            inHelpButton = true;
+        }else{
+            inHelpButton = false;
+        }
+        
+        
+        if(buttonType == exitButton){
+            inExitButton = true;
+        }else{
+            inExitButton = false;
+        }
+
+        image(buttonHighlight, x, y, buttonSizeX, buttonSizeY);
+        
+    }
+    image(buttonText, textX, textY, 90, 50);
+    
+
+}
+
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
@@ -568,7 +673,6 @@ display() {
     image(this.sprite, this.xPos, this.yPos, this.size, this.size);
     }
 }
-
 
 class Goblin {
     constructor(sprite, x, y, size, speed) {
