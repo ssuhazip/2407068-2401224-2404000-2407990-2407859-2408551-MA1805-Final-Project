@@ -737,7 +737,7 @@ update() {
 
 class Crown {
     constructor() {
-      this.x = width -200;
+      this.x = 250;
       this.y = 100;
       this.size = 100;
       this.angle = 0;
@@ -746,7 +746,7 @@ class Crown {
     }
   
     update() {
-      this.y = 200 + sin(this.angle) * this.amplitude;
+      this.y = 500 + sin(this.angle) * this.amplitude;
       this.angle += this.frequency;
     }
   
