@@ -307,6 +307,22 @@ for (let enemyCount = 0; enemyCount < numKnights; enemyCount++) {
 
 crownSprite = new Crown();
 
+// background image
+  image(loseBackgroundImage, 0, 0, width, height);
+
+  // button with image
+  let button1 = createImg('playagain.jpeg');
+  button1.position(100, 300);
+  button1.size(150, 150); //  size of button
+  button1.mousePressed(button1Clicked);
+
+  // button with image
+  let button2 = createImg('mainmenu.jpeg');
+  button2.position(380, 300);
+  button2.size(150, 150); //  size of button
+  button2.mousePressed(button2Clicked);
+}
+
   // Set the custom font
   textFont(endCustomFont);
 
