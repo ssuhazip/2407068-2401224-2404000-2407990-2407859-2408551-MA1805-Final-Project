@@ -51,7 +51,13 @@ Overall, I have enjoyed the process of creating the narrative a lot, as well as 
 
 
 **Anna: Designer for assets/ Coder for Story, Map Assets, some dialogue-**
+I took on the initial role of designing the decorative world assets, such as the barrels, skeletons, and banners to add depth to the environment. I then resized and loaded in all of Amelia's tilemap textures, as well as rewrote the graphicsMap to display them, some with my assets on top. I also assisted Amelia in the making of the main menu screen, including the making of the button function.
 
+I had also coded a simple dialogue system, which displays the dialogue box, dialogue click animation, and the text to be shown within it. The function then incrementally shows the letters in each string as to mimic proper speech. In the end, I created a new Cutscene function to show the dialogue sequence in as well as allowing me to create a mini animation of showing the front door opening and closing along with the player appearing, which included creating a new gameState as I had encountered a bug where the goblins would not move correctly if I used to functions in the "play" gameState. The door animation was created simply by scheduling a change in the graphicsMap using the SetTimeout() function.
+
+Most problems I had encountered and managed to resolve included the combination of my own code along with other peoples'. This meant understanding how each person's chunk of code worked in order to interact seamlessly with my own, such as using the tileMaps and play.display(); for my beginning cutscene, or connecting the main menu buttons to Allyssa's scroll. Ultimately, this helped further my understanding of computational thinking deeply.
+
+Overall, I enjoyed the process of creating immersion through both the decorative assets and animation, given more time I would've liked to add depth through futher dialogue and animation to the other levels in a similar way. The project has helped me develop my passion for bringing worlds to life as well as my understanding of javascript.
 
 **Amelia: Designer for character, tile maps/ Coder for Intro screen, story-**
 
