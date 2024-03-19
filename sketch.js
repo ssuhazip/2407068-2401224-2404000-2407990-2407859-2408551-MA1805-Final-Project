@@ -58,7 +58,6 @@ let goblinSprite2;
 
 //INITIALISE CROWN VARIABLES
 let crownSprite;
-let message = "";
 let showRectangle = false;
 let crownTexture;
 
@@ -327,17 +326,6 @@ function mouseClicked() {
             }
 }
 
-function mousePressed() {
-    if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)) {
-      crownSprite.handleClick();
-    }
-  }
-
-  function isInsideTriangle(px, py, x, y, size) {
-    const d = dist(px, py, x, y + size);
-    return px >= x - size && px <= x + size && py >= y && py <= y + size && d <= size;
-  }
-
 function drawStartPage() {
     // Draw the background image for the start screen
     image(startScreenImage, 0, 0, width, height);
@@ -389,11 +377,7 @@ function drawGame() {
     player.display();
     player.move();
 
-    crownSprite.update();
-  crownSprite.display();
-  if (showRectangle) {
-    sprite.displayRectangle();
-  }
+
 
     // Draw dagger if it's visible
     if (daggerVisible) {
@@ -405,6 +389,9 @@ function drawGame() {
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
         }
+
+        crownSprite.update();
+  crownSprite.display();
     }
 
 function drawCutscene() {
@@ -761,11 +748,6 @@ class Crown {
     update() {
       this.y = 200 + sin(this.angle) * this.amplitude;
       this.angle += this.frequency;
-    }
-  
-    handleClick() {
-      message = "Unbelievable! you have managed to find the mighty Crown!";
-      showRectangle = true;
     }
   
     display() {
