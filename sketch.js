@@ -125,6 +125,7 @@ let dialogueHasFinished = false;
 let isDoorOpen = false;
 let isCutscene = true;
 
+
 function preload() {
 
     textures[0] = loadImage("assets/path/path_1a.png");
