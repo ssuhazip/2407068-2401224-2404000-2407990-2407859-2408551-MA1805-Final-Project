@@ -375,10 +375,10 @@ function mouseClicked() {
                     dialogue(goblinDialogue[dialogueNum])
                 }
              }
-        } else if (gameState === "cutscene") {
+        } else if (gameState === "cutscene") { //transition to win when the crown is clicked on
             gameState = "win";
         }
-        if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)){
+        if (isInsideTriangle(mouseX, mouseY, crownSprite.x, crownSprite.y, crownSprite.size)){ // get to and click on the crown to win
             gameState = "win";
 
           }
