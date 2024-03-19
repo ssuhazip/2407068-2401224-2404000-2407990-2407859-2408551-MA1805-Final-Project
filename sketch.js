@@ -25,7 +25,6 @@ let graphicsMap = [
     [24, 25, 25, 25, 28, 29, 26, 26, 26, 27, ]
 ]
 
-
 let tileRules = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
@@ -75,7 +74,6 @@ let buttonY = 420;
 let buttonCentre = 55; // distance from the edge to the centre of the button
 let buttonSizeX = 575;
 let buttonSizeY = 575;
-
 
 // PLAY BUTTON VARIABLES
 let playText;
@@ -213,7 +211,6 @@ function preload() {
     
     dialogueBox = loadImage("assets/dialogueBox.png");
     dialogueClick = loadImage("assets/dialogueClick.png");
-    
 }
 
 function setup() {
@@ -249,7 +246,6 @@ function setup() {
                                         random(0, height), 
                                         goblinSize, tileRules)
     }
-    
 }
 
 function draw() {
@@ -330,9 +326,6 @@ function drawStartPage() {
         displayButton(playButton, playButtonX, buttonY, buttonSizeX, buttonSizeY, playText, playButtonX + 25, buttonY + 40, buttonHighlight, inPlayButton);
         displayButton(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY, helpText, helpButtonX + 25, buttonY + 40, buttonHighlight, inHelpButton);
         displayButton(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY, exitText, exitButtonX + 25, buttonY + 40, buttonHighlight, inExitButton);
-    
-        
-
 }
 
 function drawTextContent() {
@@ -386,7 +379,6 @@ function drawGame() {
         }
     }
 
-
 function drawCutscene() {
     if(isCutscene){
         inDialogue = false;
@@ -418,7 +410,6 @@ function drawCutscene() {
     
     }
 }
-
 
 function drawGraphicsMap(graphicsMap){
     let tileID = 0;
@@ -476,8 +467,6 @@ function drawClosedDoor() {
     ]
 
     drawGraphicsMap(graphicsMapClosed);
-    
-  
 }
 
 function dialogue(string, name) { // shows the inputted string letter by letter inside the dialogue box.
@@ -501,8 +490,6 @@ function dialogue(string, name) { // shows the inputted string letter by letter 
     }else{
         hasFinished = false;
     }
-    
-
 }
 
 function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, textX, textY, buttonHighlight, inButton) {
@@ -536,10 +523,7 @@ function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, t
         
     }
     image(buttonText, textX, textY, 90, 50);
-    
-
 }
-
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
@@ -670,7 +654,6 @@ class Player {
         }
     }
 
-
 display() {
     imageMode(CORNER);
     image(this.sprite, this.xPos, this.yPos, this.size, this.size);
@@ -702,9 +685,7 @@ class Goblin {
             image(this.sprite, this.x, this.y, this.size, this.size);
         }
         this.update();
-    
 }
-
 
 update() {
     let dx = this.player.xPos - this.x;
