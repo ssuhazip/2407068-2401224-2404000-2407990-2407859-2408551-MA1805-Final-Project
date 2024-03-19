@@ -20,8 +20,8 @@ let graphicsMap = [
 ]
 
 function preload() {
-    textures[0] = loadImage("path.png");
-    textures[1] = loadImage("wall.png");
+    textures[0] = loadImage("assets/path.png");
+    textures[1] = loadImage("assets/wall.png");
 }
 
 function setup() {
