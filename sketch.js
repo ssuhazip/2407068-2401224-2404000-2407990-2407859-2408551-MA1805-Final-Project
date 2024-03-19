@@ -45,12 +45,12 @@ let playerSprite;
 let playerSpeed = 5;
 let playerSize = tileSize;
 
+//INITIALISE GOBLIN VARIABLES
 let goblins = [];
 let goblinSize = 30;
 let numGoblins = 3;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
-
 //sprite variables
 let goblinSprite;
 let goblinSprite1;
@@ -62,8 +62,8 @@ let textContent = "Dear Rebels,\n\nAs we stand on the edge of history, poised to
 let customFont;
 let backgroundImage;
 
+//INITIALISE DAGGER VARIABLES
 let daggerImage; // Variable to hold the dagger image
-
 let daggerVisible = false; // Boolean variable to track 
 
 ///INITIALISE BUTTON VARIABLES
@@ -226,6 +226,7 @@ function setup() {
     // Set initial scroll position to the height of the canvas
     scrollPos = height;
 
+    //Create the tilemap
     let tileID = 0;
     for (let across = 0; across < numAcross; across++) {
         tilemap[across] = [];
@@ -241,7 +242,7 @@ function setup() {
 
     }
 
-    
+    //creates goblin sprites to ramdomly spawn onto the tilemap
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount] = new Goblin(goblinSprite1,
                                         random(0, width),
@@ -289,7 +290,7 @@ function keyPressed() {
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
     }
-    player.setDirection();
+    player.setDirection(); //sets plaer to move with wasd keys
 }   
 
 function mouseClicked() {
@@ -379,6 +380,7 @@ function drawGame() {
         image(daggerImage, player.xPos, player.yPos, player.size, player.size);
     }
 
+    //draws goblins onto to the dungeon level
     for (let enemyCount = 0; enemyCount < numGoblins; enemyCount++) {
         goblins[enemyCount].display();
         }
@@ -582,24 +584,25 @@ class Player {
 
     }
     setDirection() {
+        //sets player controls
         if (!this.isMoving) {
             //UP
-            if(key === "w") {
+            if(key === "w") { //UP
                 this.dirX = 0;
                 this.dirY = -1;
             }
             //DOWN
-            if(key === "s") {
+            if(key === "s") { //DOWN
                 this.dirX = 0;
                 this.dirY = 1;
             }
             //LEFT
-            if(key === "a") {
+            if(key === "a") { //LEFT
                 this.dirX = -1;
                 this.dirY = 0;
             }
             //RIGHT
-            if(key === "d") {
+            if(key === "d") { //RIGHT
                 this.dirX = 1;
                 this.dirY = 0;
             }
