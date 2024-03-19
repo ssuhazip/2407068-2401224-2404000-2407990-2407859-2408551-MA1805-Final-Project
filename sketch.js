@@ -540,11 +540,19 @@ class Player {
         this.yPos = this.startDown * this.tileSize;
     }
     
-
     move() {
         if(this.isMoving) {
             this.xPos += this.speed * this.dirX;
             this.yPos += this.speed * this.dirY;
+
+            // Check for collisions with goblins
+            for (let i = 0; i < goblins.length; i++) {
+                let distance = dist(this.xPos, this.yPos, goblins[i].x, goblins[i].y);
+                if (distance < this.size / 2 + goblins[i].size / 2) {
+                    // Player collides with a goblin, trigger player death
+                    this.playerDied();
+                }
+            }
 
             if(this.xPos === this.tx && this.yPos === this.ty) {
                 this.isMoving = false;
@@ -552,8 +560,8 @@ class Player {
                 this.dirY = 0;
             }
         }
-
     }
+
 
 display() {
     imageMode(CORNER);
@@ -591,26 +599,32 @@ class Goblin {
 }
 
 
-       update() {
-        let dx = this.player.xPos - this.x;
-        let dy = this.player.yPos - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        
-        // Normalize the direction vector
-        dx /= distance;
-        dy /= distance;
+update() {
+    let dx = this.player.xPos - this.x;
+    let dy = this.player.yPos - this.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Move the goblin towards the player
-        this.x += dx * this.speed;
-        this.y += dy * this.speed;
+    // Normalize the direction vector
+    dx /= distance;
+    dy /= distance;
 
-        // Update direction based on movement
-        if (dx > 0) {
-            this.direction = 'right';
-        } else {
-            this.direction = 'left';
-        }
+    // Move the goblin towards the player
+    this.x += dx * this.speed;
+    this.y += dy * this.speed;
+
+    // Update direction based on movement
+    if (dx > 0) {
+        this.direction = 'right';
+    } else {
+        this.direction = 'left';
     }
+
+    // Check for collisions with the player
+    if (distance < this.size / 2 + this.player.size / 2) {
+        // Goblin collides with the player, trigger player death
+        this.player.playerDied();
+    }
+}
 
     switchSprite() {
         this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.sprites.length;
