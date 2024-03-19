@@ -40,12 +40,10 @@ Due to the game not having multiple maps,space was limited so there is only two 
 
 Overall i enjoyed getting to draw sprites and animating them for the game, and i found it satisfying when the code was successful. The project has helped me broaden my understanding of javascript.
 
-
-
 **Allyssa: Story writer/Coder for player, scroll message screen, tile traps, winning screen-**
 I have taken on the role of creating the narrative of the game where I sort of proposed the basis of the backstory of the entire game, which is essentially the whole idea of a rebellion attempting the overthrow the king. But in order to do this, they must obtain these three objects which are each contained in three different locations within the king's fortress. In order to introduce this narrative to the players of the game, I have created a scroll which will be presented right before the player enters the first level of the game, and it contains a message from the leader of this rebellion group, explaining to the player the main objective of the game and what they'll be facing in order to achieve the goal of overthrowing the king.
 
-I have also contributed to the code so that the player is able to move around the tilemap by pressing the WASD keys, by importing the character design Amelia had made and implementing some of the code learnt from week 17 to achieve this. I have also managed to code it so that whenever the player left clicks, the dagger then pops up on the character. Additionally to this, I have further developed Anna's bones and skulls assets on the map, but adding a few more, as well as coding it so that whenever the player steps on it, it is instant death and game over. I had also coded to basis of the intro screen when Anna and Amelia had not fully developed the game design of the intro screen, and had combined all the intro screen, scroll screen and the game code earlier on in the process. Lastly, I had also coded the winning screen by again, combining Amelia's and Suha's game desgin/Art Work. 
+I have also contributed to the code so that the player is able to move around the tilemap by pressing the WASD keys, by importing the character design Amelia had made and implementing some of the code learnt from week 17 to achieve this. I have also managed to code it so that whenever the player left clicks, the dagger then pops up on the character. Additionally to this, I have further developed Anna's bones and skulls assets on the map, but adding a few more, as well as coding it so that whenever the player steps on it, it is instant death and game over. I had also coded to basis of the intro screen when Anna and Amelia had not fully developed the game design of the intro screen, and had combined all the intro screen, scroll screen and the game code earlier on in the process. Lastly, I had also coded the winning screen by again, combining Amelia's and Suha's game desgin/Art Work; and had also assisted Suha in coding the buttons of the game over screen. 
 
 Overall, I have enjoyed the process of creating the narrative a lot, as well as coding the scoll message page, the moving character, the dagger and the tile traps; as I was able to both develop my coding skills as well as use my passion for fictional storytelling. 
 
@@ -66,7 +64,14 @@ Theme of Dungeons, Rebellion, Monarchy, etc. We're essentially aiming for a dark
 
 **Control Keys/Movement/Combat:** The user will be able to use the cursor to left click on the buttons on the intro screen, then they are also able to use left click or spacebar to skip the scroll screen. 
 
-The player will be able to use the WASD keys to move the character around; and since they will be engaging in combat with various enemies, they would be able to use a knife by left clicking to get the dagger up on the screen, then right clicking to deal damage to those attacking them. If the player also steps on any of the tiles that has the skull and bones on it, it is an instant death.
+The player will be able to use the WASD keys to move the character around; and since they will be engaging in combat with various enemies, they would be able to use a knife by left clicking to get the dagger up on the screen. If the player also steps on any of the tiles that has the skull and bones on it, it is an instant death.
+
+Once the player manages to get on the same tile as the crown, the player can click on the crown and they would immediatley be taken to the winnner screen. 
+
+## A NOTE FROM US- 
+Although we initially aimed to code 3 levels where each item would be held, we unfortunately did not manage to code all three and only coded the first level due to several challenges we had encountered, such as some peoples codes not functioning; and coding the first level was too time consuming. We also unfortunetley did not manage to get the combat aspect of the game to function, Allyssa and Imogen both attempted to code this but was both unsuccessful. 
+
+Therefore, since we didn't manage to get this aspect of the game done, the main objective of the game to do is to avoid stepping on the tile traps as well as running away from all of the enemies, in order to obtain the crown. 
 
 ## AESTHETIC
 Main aestheitc/atmosphere we are aiming for: 
