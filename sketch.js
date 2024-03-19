@@ -47,7 +47,7 @@ let playerSize = tileSize;
 
 let goblins = [];
 let goblinSize = 30;
-let numGoblins = 4;
+let numGoblins = 3;
 let lastSpriteChangeTime = 0;
 const spriteChangeInterval = 190;
 
@@ -684,7 +684,7 @@ class Goblin {
         this.targetX = 8;
 		this.targetY = 8;
         this.size = 80, 80;
-        this.speed = 0.8
+        this.speed = 0.6
         this.direction = 'right';
         this.player = player;
     }
