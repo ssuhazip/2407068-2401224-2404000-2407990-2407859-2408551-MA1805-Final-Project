@@ -81,14 +81,14 @@ let buttonSizeY = 575;
 let playText;
 let playButton;
 let buttonHighlight;
-let playButtonX = 40; 
+let playButtonX = 45; 
 let playButtonDistance; 
 let inPlayButton = false; 
 
 // HELP BUTTON VARIABLES
 let helpText;
 let helpButton; // use same logic for these buttons but diff X and Y
-let helpButtonX = 230;
+let helpButtonX = 235;
 let helpButtonDistance;
 let inHelpButton = false;
 
@@ -324,36 +324,12 @@ function drawStartPage() {
     // Set text properties
     image(Title, 70, 20, 500, 200);
         // PLAY BUTTON
-        image(playButton, playButtonX,buttonY, buttonSizeX, buttonSizeY);
-        image(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
-        image(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
+        displayButton(playButton, playButtonX, buttonY, buttonSizeX, buttonSizeY, playText, playButtonX + 25, buttonY + 40, buttonHighlight, inPlayButton);
+        displayButton(helpButton, helpButtonX, buttonY, buttonSizeX, buttonSizeY, helpText, helpButtonX + 25, buttonY + 40, buttonHighlight, inHelpButton);
+        displayButton(exitButton, exitButtonX, buttonY, buttonSizeX, buttonSizeY, exitText, exitButtonX + 25, buttonY + 40, buttonHighlight, inExitButton);
     
-        playButtonDistance = dist(playButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (playButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inPlayButton = true;
-            image(buttonHighlight, playButtonX, buttonY, buttonSizeX, buttonSizeY);
         
-        }else {
-            inPlayButton = false;
-        }
-        image(playText, playButtonX + 25, buttonY + 40, 90, 50);
 
-        // HELP BUTTON
-        helpButtonDistance = dist(helpButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (helpButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inHelpButton = true;
-            image(buttonHighlight, helpButtonX, buttonY, buttonSizeX, buttonSizeY);
-        }
-        
-        exitButtonDistance = dist(exitButtonX + buttonCentre, buttonY + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
-        if (exitButtonDistance <= 50){ //might want to fine-tune distance value (default 60)
-            inExitButton = true;
-            image(buttonHighlight, exitButtonX, buttonY, buttonSizeX, buttonSizeY);
-
-        }
-        image(helpText, helpButtonX + 25, buttonY + 40, 90, 50);
-        // EXIT BUTTON
-        image(exitText, exitButtonX + 25, buttonY + 40, 90, 50);
 }
 
 function drawTextContent() {
@@ -524,6 +500,42 @@ function dialogue(string, name) { // shows the inputted string letter by letter 
     
 
 }
+
+function displayButton(buttonType, x, y, buttonSizeX, buttonSizeY, buttonText, textX, textY, buttonHighlight, inButton) {
+    image(buttonType, x, y, buttonSizeX, buttonSizeY);
+    
+    buttonDistance = dist(x + buttonCentre, y + buttonCentre, mouseX, mouseY); // calculate the distance between centre of button and the mouse
+    if (buttonDistance <= 50){ //might want to fine-tune distance value (default 60)    
+        
+        if(buttonType == playButton){
+            inPlayButton = true;
+            
+        }else{
+            inPlayButton = false;
+        }
+        
+        
+        if(buttonType == helpButton){
+            inHelpButton = true;
+        }else{
+            inHelpButton = false;
+        }
+        
+        
+        if(buttonType == exitButton){
+            inExitButton = true;
+        }else{
+            inExitButton = false;
+        }
+
+        image(buttonHighlight, x, y, buttonSizeX, buttonSizeY);
+        
+    }
+    image(buttonText, textX, textY, 90, 50);
+    
+
+}
+
 
 class Tile {
     constructor(texture, across, down, tileSize, tileID) {
