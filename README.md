@@ -32,7 +32,13 @@ An issue I was not able to resolve was coding the two next level maps of the gam
 Overall, I enjoyed fixing issues with the main code and organising our folders as it was very satisfying to tidy up and reslove our code to work together for the game. 
 
 **Imogen: Designer for enemy sprites/ Coder for enemy sprites-** 
+For this project I have taken the role of both coding for and making sprites for the enemies. I drew sprites for multiple enemies and coded them so they move and follow the player and cause a game over if they collide. I had created three classes for the three enemies (goblins, knights and the king), and coded an animation loop for the goblins and knights to appear walking.
 
+An issue i struggled with was making the enemies not collide with the wall tiles, which i failed to prevent. Additionally I had to alter the enemies spawn positions so they would not immediately kill the player, which i did sucessfully, restricting their area of spawn to the bottom rows of the map.
+
+Due to the game not having multiple maps, there is only one enemy included in the game (we intended to have different enemies per stage) however the code for the knight and king enemy can be found within my branch (Imogen-File).
+
+Overall i enjoyed getting to draw sprites and animating them for the game, and i found it satisfying when the code was successful. The project has helped me broaden my understanding of javascript.
 
 
 
